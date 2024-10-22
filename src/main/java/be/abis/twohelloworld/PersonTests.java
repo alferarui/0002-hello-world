@@ -6,32 +6,28 @@ import be.abis.twohelloworld.model.Person;
 
 public class PersonTests {
     public static void main(String[] args) {
+        Address address=new Address();
+            address.setTown("Leuven");
+            address.setZipCode("3000");
+            address.setNr("23");
+            address.setStreet("Brusselsesteenweg");
 
-        Person person = new Person(){{
-            Person p = this;
-            p.setFirstName("John");
-            p.setLastName("Doe");
-            p.setAge(35);
-            p.setPersonId(1);
-            p.setEmailAddress("john.doe@abis.be");
-            p.setPassword("34rFwe4£$R3ddr!");
-            p.setLanguage("en-INT");
+        Company company=new Company();
+            company.setName("Abis");
+            company.setTelephoneNumber("+32472123456");
+            company.setVatNr("4234535348574384579");
+            company.setAddress(address);
 
-            setCompany(new Company(){{
-                Company company=this;
-                company.setName("Abis");
-                company.setTelephoneNumber("+32472123456");
-                company.setVatNr("4234535348574384579");
-                setAddress(new Address(){{
-                    Address address=this;
-                    address.setTown("Leuven");
-                    address.setZipCode("3000");
-                    address.setNr("23");
-                    address.setStreet("Brusselsesteenweg");
-                }});
-            }});
+        Person person = new Person();=
+            person.setFirstName("John");
+            person.setLastName("Doe");
+            person.setAge(35);
+            person.setPersonId(1);
+            person.setEmailAddress("john.doe@abis.be");
+            person.setPassword("34rFwe4£$R3ddr!");
+            person.setLanguage("en-INT");
 
-        }};
+            person.setCompany(company);
 
         System.out.println(person.toString());
 
