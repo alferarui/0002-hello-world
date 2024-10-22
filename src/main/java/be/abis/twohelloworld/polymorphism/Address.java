@@ -1,9 +1,8 @@
-package be.abis.twohelloworld.model;
+package be.abis.twohelloworld.polymorphism;
 
 import java.util.Objects;
 
 public class Address {
-    private Long addressId;
     private String street;
     private String nr;
     private String zipCode;
@@ -11,20 +10,11 @@ public class Address {
 
     public Address(){}
 
-    public Address(Long addressId,String street, String nr, String zipCode, String town) {
-        this.addressId = addressId;
+    public Address(String street, String nr, String zipCode, String town) {
         this.street = street;
         this.nr = nr;
         this.zipCode = zipCode;
         this.town = town;
-    }
-
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
     }
 
     public String getStreet() {
@@ -64,18 +54,21 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(addressId, address.addressId) && Objects.equals(street, address.street) && Objects.equals(nr, address.nr) && Objects.equals(zipCode, address.zipCode) && Objects.equals(town, address.town);
+        return Objects.equals(street, address.street) && Objects.equals(nr, address.nr) && Objects.equals(zipCode, address.zipCode) && Objects.equals(town, address.town);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressId, street, nr, zipCode, town);
+        return Objects.hash(street, nr, zipCode, town);
     }
 
     @Override
     public String toString() {
         return "Address{" +
-                "addressId=" + getStreet() +
+                "street='" + getStreet() + '\'' +
+                ", nr='" + getNr() + '\'' +
+                ", zipCode='" + getZipCode() + '\'' +
+                ", town='" + getTown() + '\'' +
                 ", street=" + ((getStreet()==null)?"null":('"' + getStreet() + '"'))  +
                 ", nr=" + ((getNr()==null)?"null":('"' + getNr() + '"'))  +
                 ", zipCode=" + ((getZipCode()==null)?"null":('"' + getZipCode() + '"'))  +

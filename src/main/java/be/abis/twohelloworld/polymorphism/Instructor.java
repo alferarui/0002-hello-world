@@ -1,6 +1,4 @@
-package be.abis.twohelloworld.model;
-
-import java.util.Objects;
+package be.abis.twohelloworld.polymorphism;
 
 public class Instructor extends Person {
     private double salary;
@@ -9,9 +7,8 @@ public class Instructor extends Person {
         super();
     }
 
-    public Instructor(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company, double salary) {
-        super(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
-        this.salary = salary;
+    public Instructor(String firstName, String lastName) {
+        super(firstName, lastName);
     }
 
     public double getSalary() {
@@ -21,21 +18,6 @@ public class Instructor extends Person {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Instructor that = (Instructor) o;
-        return Double.compare(salary, that.salary) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), salary);
-    }
-
 
     @Override
     public String toString() {
@@ -51,5 +33,15 @@ public class Instructor extends Person {
                 ", company=" + getCompany() +
                 "salary=" + salary +
                 '}';
+    }
+
+    public void teach(){
+        System.out.println(this.getFirstName() + " " + this.getLastName() + " teaches course");
+    }
+
+    @Override
+    public void attendCourse(){
+        super.attendCourse();
+        System.out.println("with extra attention");
     }
 }

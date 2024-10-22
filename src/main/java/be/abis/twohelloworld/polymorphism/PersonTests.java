@@ -1,9 +1,9 @@
-package be.abis.twohelloworld;
+package be.abis.twohelloworld.polymorphism;
 
-import be.abis.twohelloworld.model.Address;
-import be.abis.twohelloworld.model.Company;
-import be.abis.twohelloworld.model.Instructor;
-import be.abis.twohelloworld.model.Person;
+import be.abis.twohelloworld.polymorphism.Address;
+import be.abis.twohelloworld.polymorphism.Company;
+import be.abis.twohelloworld.polymorphism.Instructor;
+import be.abis.twohelloworld.polymorphism.Person;
 
 import java.util.ArrayList;
 
