@@ -1,14 +1,11 @@
-package be.abis.twohelloworld;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
 import org.apache.logging.log4j.util.Strings;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CsvFileCourseRepository implements CourseRepository{
     private final File fl = new File("CsvFileCourse.repository.csv");

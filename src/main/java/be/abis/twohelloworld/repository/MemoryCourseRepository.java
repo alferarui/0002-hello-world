@@ -1,10 +1,8 @@
-package be.abis.twohelloworld;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
-import org.apache.logging.log4j.util.Strings;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 

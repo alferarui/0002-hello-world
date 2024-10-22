@@ -1,6 +1,7 @@
-package be.abis.twohelloworld;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
+import be.abis.twohelloworld.repository.CsvFileCourseRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

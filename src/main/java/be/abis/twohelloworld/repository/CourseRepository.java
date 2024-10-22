@@ -1,4 +1,4 @@
-package be.abis.twohelloworld;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
 
