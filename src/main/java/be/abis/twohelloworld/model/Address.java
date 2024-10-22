@@ -3,10 +3,10 @@ package be.abis.twohelloworld.model;
 import java.util.Objects;
 
 public class Address {
-    String street;
-    String nr;
-    String zipCode;
-    String town;
+    private String street;
+    private String nr;
+    private String zipCode;
+    private String town;
 
     public Address(){}
 

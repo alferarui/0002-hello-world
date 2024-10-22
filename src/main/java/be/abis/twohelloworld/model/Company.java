@@ -3,10 +3,10 @@ package be.abis.twohelloworld.model;
 import java.util.Objects;
 
 public class Company {
-    String name;
-    String telephoneNumber;
-    String vatNr;
-    Address address;
+    private String name;
+    private String telephoneNumber;
+    private String vatNr;
+    private Address address;
 
     public Company(String name, String telephoneNumber, String vatNr, Address address) {
         this.name = name;

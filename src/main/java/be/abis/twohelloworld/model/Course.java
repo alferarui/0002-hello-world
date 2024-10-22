@@ -6,11 +6,11 @@ public class Course {
 
     public static final Course NULL = new Course ();
 
-    Integer courseId;
-    String shortTitle;
-    String longTitle;
-    Integer numberOfDays;
-    Integer pricePerDay;
+    private Integer courseId;
+    private String shortTitle;
+    private String longTitle;
+    private Integer numberOfDays;
+    private Integer pricePerDay;
 
 
     public Course(){}
