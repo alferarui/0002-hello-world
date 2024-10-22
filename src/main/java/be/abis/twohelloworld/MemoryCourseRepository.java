@@ -1,12 +1,30 @@
 package be.abis.twohelloworld;
 
 import be.abis.twohelloworld.model.Course;
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class MemoryCourseRepository implements CourseRepository {
+
+    public void initFromCsv(String csvString){
+        String[] lines = csvString.split("\n");
+        for (String line : lines){
+            String[] cells = line.split("[,;]");
+            // System.out.println(Arrays.toString(cells));
+            Course course=new Course(
+                    Integer.parseInt(cells[0]),
+                    cells[1],
+                    cells[2],
+                    Integer.parseInt(cells[3]),
+                    Integer.parseInt(cells[4])
+            );
+            courses.add(course);
+        }
+    }
     ArrayList<Course> courses = new ArrayList<>(){{
         add(new Course(1,"Korean Kitchen","Basics of Korean Kitchen",10,100));
         add(new Course(2,"Assembly Language for Kindergarden","Accessible introduction to microcontrollers",10,100));
@@ -27,7 +45,8 @@ public class MemoryCourseRepository implements CourseRepository {
 
     @Override
     public Course findCourseByShortTitle(String shortTitle) {
-        return courses.stream().filter(c -> c.getShortTitle().matches("^.?*" +shortTitle+ ".?*$")).findFirst().orElse(Course.NULL);
+        String matchString = "^" +shortTitle.replaceAll("[*]",".*?")+ "$";
+        return courses.stream().filter(c -> c.getShortTitle().matches(matchString)).findFirst().orElse(Course.NULL);
     }
 
     @Override
