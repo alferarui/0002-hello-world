@@ -9,12 +9,11 @@ import java.util.List;
 
 public class CsvFileCourseRepository implements CourseRepository{
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private MemoryCourseRepository memoryCourseRepository = new MemoryCourseRepository();;
-    int writes=0;
-    int reads=0;
+    private MemoryCourseRepository memoryCourseRepository = new MemoryCourseRepository();
+    private boolean memoryIsFresh=false;
 
     public void load(){
-        if(fl.exists()) {
+        if(fl.exists() && !memoryIsFresh) {
             // read all
             try(final FileInputStream fis = new FileInputStream(fl)) {
                 final byte[] bytes = fis.readAllBytes();
@@ -22,7 +21,7 @@ public class CsvFileCourseRepository implements CourseRepository{
                 memoryCourseRepository = new MemoryCourseRepository();
                 memoryCourseRepository.courses.clear();
                 memoryCourseRepository.initFromCsv(csv);
-                reads+=1;
+                memoryIsFresh=true;
             } catch (IOException e) {
                 System.out.println("error reading file");
                 throw new RuntimeException(e);
@@ -47,7 +46,6 @@ public class CsvFileCourseRepository implements CourseRepository{
                     )
                     .toList();
             fos.write(Strings.join(lines,'\n').getBytes(StandardCharsets.UTF_8));
-            writes+=1;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,8 +1,8 @@
 package be.abis.twohelloworld.repository;
 
-import be.abis.exercise.model.Address;
-import be.abis.exercise.model.Company;
-import be.abis.exercise.model.Person;
+import be.abis.twohelloworld.model.Address;
+import be.abis.twohelloworld.model.Company;
+import be.abis.twohelloworld.model.Person;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class FilePersonRepository implements PersonRepository {
 
 	public void readFile() {
 
-		if (allPersons.size() != 0)
+		if (!allPersons.isEmpty())
 			allPersons.clear();
 		BufferedReader br = null;
 		try {
@@ -36,8 +36,8 @@ public class FilePersonRepository implements PersonRepository {
 				if (!vals[0].equals("")) {
 					Address a = new Address();
 					a.setStreet(!vals[10].equals("null") ? vals[10] : null);
-					a.setNr(Integer.parseInt(!vals[11].equals("null") ? vals[11] : "0"));
-					a.setZipcode(!vals[12].equals("null") ? vals[12] : null);
+					a.setNr(String.valueOf(Integer.parseInt(!vals[11].equals("null") ? vals[11] : "0")));
+					a.setZipCode(!vals[12].equals("null") ? vals[12] : null);
 					a.setTown(!vals[13].equals("null") ? vals[13] : null);
 
 					Company c = new Company();
@@ -156,13 +156,20 @@ public class FilePersonRepository implements PersonRepository {
 
 	private StringBuilder parsePerson(Person p) {
 		StringBuilder sb = new StringBuilder();
-		int nr = p.getCompany().getAddress().getNr();
-		sb.append(p.getPersonId() + ";").append(p.getFirstName() + ";").append(p.getLastName() + ";")
-				.append((p.getAge() != 0 ? p.getAge() : null) + ";").append(p.getEmailAddress() + ";")
-				.append(p.getPassword() + ";").append(p.getLanguage().toLowerCase() + ";")
-				.append(p.getCompany().getName() + ";").append(p.getCompany().getTelephoneNumber() + ";")
-				.append(p.getCompany().getVatNr() + ";").append(p.getCompany().getAddress().getStreet() + ";")
-				.append((nr != 0 ? nr : null) + ";").append(p.getCompany().getAddress().getZipcode() + ";")
+		int nr = Integer.parseInt(p.getCompany().getAddress().getNr());
+		sb.append(p.getPersonId()).append(";")
+				.append(p.getFirstName() + ";")
+				.append(p.getLastName() + ";")
+                .append((p.getAge() != 0 ? p.getAge() : null) + ";")
+				.append(p.getEmailAddress() + ";")
+                .append(p.getPassword() + ";")
+				.append(p.getLanguage().toLowerCase() + ";")
+                .append(p.getCompany().getName() + ";")
+				.append(p.getCompany().getTelephoneNumber() + ";")
+                .append(p.getCompany().getVatNr() + ";")
+				.append(p.getCompany().getAddress().getStreet() + ";")
+                .append((nr != 0 ? nr : null) + ";")
+				.append(p.getCompany().getAddress().getZipCode()).append(";")
 				.append(p.getCompany().getAddress().getTown());
 
 		System.out.println(sb);

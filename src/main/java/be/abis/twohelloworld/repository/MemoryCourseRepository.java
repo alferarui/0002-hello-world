@@ -23,7 +23,8 @@ public class MemoryCourseRepository implements CourseRepository {
             courses.add(course);
         }
     }
-    ArrayList<Course> courses = new ArrayList<>(){{ add(new Course(1,"Korean Kitchen","Basics of Korean Kitchen",10,100));
+    ArrayList<Course> courses = new ArrayList<>(){{
+        add(new Course(1,"Korean Kitchen","Basics of Korean Kitchen",10,100));
         add(new Course(2,"Assembly Language for Kindergarden","Accessible introduction to microcontrollers",10,100));
         add(new Course(3,"Around the World in 80 days","Meditation",10,100));
         add(new Course(4,"Chinese","introductory course to Chinese Writing",10,100));

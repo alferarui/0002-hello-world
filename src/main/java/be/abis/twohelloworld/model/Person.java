@@ -119,7 +119,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "personId=" + ((personId==null)?"null":(personId)) +
-                ", firstName='" + ((firstName==null)?"null":('"' + firstName + '"'))  +
+                ", firstName=" + ((firstName==null)?"null":('"' + firstName + '"'))  +
                 ", lastName=" + ((lastName==null)?"null":('"' + lastName + '"'))  +
                 ", age=" + age +
                 ", emailAddress=" + ((emailAddress==null)?"null":('"' + emailAddress + '"'))  +
