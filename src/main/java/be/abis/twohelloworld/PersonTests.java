@@ -6,35 +6,20 @@ import be.abis.twohelloworld.model.Person;
 
 public class PersonTests {
     public static void main(String[] args) {
-        Address address=new Address();
-            address.setTown("Leuven");
-            address.setZipCode("3000");
-            address.setNr("23");
-            address.setStreet("Brusselsesteenweg");
+        Address address = new Address("Leuven", "3000", "23", "Brusselsesteenweg");
 
-        Company company=new Company();
-            company.setName("Abis");
-            company.setTelephoneNumber("+32472123456");
-            company.setVatNr("4234535348574384579");
-            company.setAddress(address);
+        Company company = new Company("Abis", "+32472123456", "4234535348574384579", address);
 
-        Person person = new Person();
-            person.setFirstName("John");
-            person.setLastName("Doe");
-            person.setAge(35);
-            person.setPersonId(1);
-            person.setEmailAddress("john.doe@abis.be");
-            person.setPassword("34rFwe4£$R3ddr!");
-            person.setLanguage("en-INT");
+        Person person = new Person(1,"John", "Doe", 35, "john.doe@abis.be", "34rFwe4£$R3ddr!", "en-INT",company);
 
-            person.setCompany(company);
+        person.setCompany(company);
 
         System.out.println(person.toString());
 
         System.out.println(
                 "\"" + person.getFirstName() + " " + person.getLastName()
                         + " is " + person.getAge() + " old and works for "
-                        + person.getCompany().getName()+" in " + person.getCompany().getAddress().getTown()
+                        + person.getCompany().getName() + " in " + person.getCompany().getAddress().getTown()
                         + "\""
         );
     }

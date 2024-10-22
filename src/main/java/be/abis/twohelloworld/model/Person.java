@@ -12,6 +12,19 @@ public class Person {
     String language;
     Company company;
 
+    public Person(){}
+
+    public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String password, String language, Company company) {
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.language = language;
+        this.company = company;
+    }
+
     public Integer getPersonId() {
         return personId;
     }

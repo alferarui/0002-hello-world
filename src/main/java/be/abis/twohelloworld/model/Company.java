@@ -8,6 +8,14 @@ public class Company {
     String vatNr;
     Address address;
 
+    public Company(String name, String telephoneNumber, String vatNr, Address address) {
+        this.name = name;
+        this.telephoneNumber = telephoneNumber;
+        this.vatNr = vatNr;
+        this.address = address;
+    }
+
+    public Company() {}
 
     public String getName() {
         return name;
