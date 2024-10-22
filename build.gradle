@@ -21,8 +21,30 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Annotation Processor dependencies
+    implementation 'com.squareup:javapoet:1.13.0' // for generating code
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7' // For processor registration
+    implementation 'com.google.auto.service:auto-service-annotations:1.0-rc7' // For processor annotations
+
+    // Annotation Processor dependencies
+    annotationProcessor 'com.squareup:javapoet:1.13.0'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
+
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += 'build/generated/sources/annotationProcessor/java/main'
+        }
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.annotationProcessorPath = configurations.annotationProcessor
 }
