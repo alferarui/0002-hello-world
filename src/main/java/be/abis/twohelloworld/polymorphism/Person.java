@@ -1,8 +1,10 @@
-package be.abis.twohelloworld.model;
+package be.abis.twohelloworld.polymorphism;
 
 import java.util.Objects;
 
 public class Person {
+
+    public static Integer sequence = 1;
 
     private Integer personId;
     private String firstName;
@@ -15,6 +17,13 @@ public class Person {
     private Company company;
 
     public Person(){
+        this.personId = sequence++;
+    }
+
+    public Person(String firstName, String lastName) {
+        this();
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company) {
@@ -28,6 +37,26 @@ public class Person {
         this.password = password;
         this.language = language;
         this.company = company;
+    }
+
+    public Person(Company company, String language, String password, String homeAddress, String emailAddress, Integer age, String lastName, String firstName) {
+        this();
+        this.company = company;
+        this.language = language;
+        this.password = password;
+        this.homeAddress = homeAddress;
+        this.emailAddress = emailAddress;
+        this.age = age;
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
+    public static Integer getSequence() {
+        return sequence;
+    }
+
+    public static void setSequence(Integer sequence) {
+        Person.sequence = sequence;
     }
 
     public Integer getPersonId() {
@@ -128,5 +157,9 @@ public class Person {
                 ", language=" + ((language==null)?"null":('"' + language + '"'))  +
                 ", company=" + company +
                 '}';
+    }
+
+    public void attendCourse(){
+        System.out.println(this.firstName + " " + this.lastName + " attends course");
     }
 }

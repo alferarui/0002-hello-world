@@ -1,31 +1,21 @@
-package be.abis.twohelloworld.model;
+package be.abis.twohelloworld.polymorphism;
 
 import java.util.Objects;
 
 public class Company {
-    private Long companyId;
     private String name;
     private String telephoneNumber;
     private String vatNr;
     private Address address;
 
-    public Company() {}
-
-    public Company(Long companyId,String name, String telephoneNumber, String vatNr, Address address) {
-        this.companyId = companyId;
+    public Company(String name, String telephoneNumber, String vatNr, Address address) {
         this.name = name;
         this.telephoneNumber = telephoneNumber;
         this.vatNr = vatNr;
         this.address = address;
     }
 
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
-    }
+    public Company() {}
 
     public String getName() {
         return name;
@@ -64,18 +54,18 @@ public class Company {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
-        return Objects.equals(companyId, company.companyId) && Objects.equals(name, company.name) && Objects.equals(telephoneNumber, company.telephoneNumber) && Objects.equals(vatNr, company.vatNr) && Objects.equals(address, company.address);
+        return Objects.equals(name, company.name) && Objects.equals(telephoneNumber, company.telephoneNumber) && Objects.equals(vatNr, company.vatNr) && Objects.equals(address, company.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(companyId, name, telephoneNumber, vatNr, address);
+        return Objects.hash(name, telephoneNumber, vatNr, address);
     }
 
     @Override
     public String toString() {
         return "Company{" +
-                "companyId='" + getCompanyId() + '\'' +
+                "name='" + getName() + '\'' +
                 ", telephoneNumber='" + getTelephoneNumber() + '\'' +
                 ", vatNr='" + getVatNr() + '\'' +
                 ", name=" + ((getName()==null)?"null":('"' + getName() + '"'))  +
