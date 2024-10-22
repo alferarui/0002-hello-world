@@ -18,7 +18,7 @@ public class PersonTests {
             company.setVatNr("4234535348574384579");
             company.setAddress(address);
 
-        Person person = new Person();=
+        Person person = new Person();
             person.setFirstName("John");
             person.setLastName("Doe");
             person.setAge(35);
@@ -35,7 +35,7 @@ public class PersonTests {
                 "\"" + person.getFirstName() + " " + person.getLastName()
                         + " is " + person.getAge() + " old and works for "
                         + person.getCompany().getName()+" in " + person.getCompany().getAddress().getTown()
-                        + "`"
+                        + "\""
         );
     }
 }
