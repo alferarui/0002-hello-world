@@ -65,10 +65,14 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "street='" + street + '\'' +
-                ", nr='" + nr + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", town='" + town + '\'' +
+                "street='" + getStreet() + '\'' +
+                ", nr='" + getNr() + '\'' +
+                ", zipCode='" + getZipCode() + '\'' +
+                ", town='" + getTown() + '\'' +
+                ", street=" + ((getStreet()==null)?"null":('"' + getStreet() + '"'))  +
+                ", nr=" + ((getNr()==null)?"null":('"' + getNr() + '"'))  +
+                ", zipCode=" + ((getZipCode()==null)?"null":('"' + getZipCode() + '"'))  +
+                ", town=" + ((getTown()==null)?"null":('"' + getTown() + '"'))  +
                 '}';
     }
 }

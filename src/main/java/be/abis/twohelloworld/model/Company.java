@@ -65,10 +65,13 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "name='" + name + '\'' +
-                ", telephoneNumber='" + telephoneNumber + '\'' +
-                ", vatNr='" + vatNr + '\'' +
-                ", address=" + address +
+                "name='" + getName() + '\'' +
+                ", telephoneNumber='" + getTelephoneNumber() + '\'' +
+                ", vatNr='" + getVatNr() + '\'' +
+                ", name=" + ((getName()==null)?"null":('"' + getName() + '"'))  +
+                ", telephoneNumber=" + ((getTelephoneNumber()==null)?"null":('"' + getTelephoneNumber() + '"'))  +
+                ", vatNr=" + ((getVatNr()==null)?"null":('"' + getVatNr() + '"'))  +
+                ", address=" + getAddress() +
                 '}';
     }
 }

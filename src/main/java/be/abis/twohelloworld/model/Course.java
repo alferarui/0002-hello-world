@@ -79,11 +79,11 @@ public class Course {
     @Override
     public String toString() {
         return "Course{" +
-                "courseId=" + courseId +
-                ", shortTitle='" + shortTitle + '\'' +
-                ", longTitle='" + longTitle + '\'' +
-                ", numberOfDays=" + numberOfDays +
-                ", pricePerDay=" + pricePerDay +
+                "courseId=" + getCourseId() +
+                ", shortTitle=" + ((getShortTitle()==null)?"null":('"' + getShortTitle() + '"'))  +
+                ", longTitle=" + ((getLongTitle()==null)?"null":('"' + getLongTitle() + '"'))  +
+                ", numberOfDays=" + getNumberOfDays() +
+                ", pricePerDay=" + getPricePerDay() +
                 '}';
     }
 }
