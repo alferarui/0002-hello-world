@@ -2,7 +2,10 @@ package be.abis.twohelloworld;
 
 import be.abis.twohelloworld.model.Address;
 import be.abis.twohelloworld.model.Company;
+import be.abis.twohelloworld.model.Instructor;
 import be.abis.twohelloworld.model.Person;
+
+import java.util.ArrayList;
 
 public class PersonTests {
     public static void main(String[] args) {
@@ -10,7 +13,7 @@ public class PersonTests {
 
         Company company = new Company("Abis", "+32472123456", "4234535348574384579", address);
 
-        Person person = new Person(1,"John", "Doe", 35, "john.doe@abis.be", "34rFwe4£$R3ddr!", "en-INT",company);
+        Person person = new Person("John", "Doe",company);
 
         person.setCompany(company);
 
@@ -22,5 +25,21 @@ public class PersonTests {
                         + person.getCompany().getName() + " in " + person.getCompany().getAddress().getTown()
                         + "\""
         );
+
+
+        ArrayList<Person> persons = new ArrayList<>(){{
+            add(new Person("John", "Doe"));
+            add(new Person("Jane", "Doe"));
+            add(new Person("Betty", "Doe"));
+            add(new Person("Paul", "Doe"));
+            add(new Person("Dick", "Doe"));
+            add(new Person("Bob", "Doe"));
+        }};
+        Instructor instructor = new Instructor("Bob", "Doe");
+        persons.add(instructor);
+
+        for (Person person1 : persons) {
+            System.out.println(person1);
+        }
     }
 }

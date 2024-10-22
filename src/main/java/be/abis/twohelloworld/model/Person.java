@@ -3,6 +3,9 @@ package be.abis.twohelloworld.model;
 import java.util.Objects;
 
 public class Person {
+
+    public static Integer sequence = 1;
+
     Integer personId;
     String firstName;
     String lastName;
@@ -12,10 +15,11 @@ public class Person {
     String language;
     Company company;
 
-    public Person(){}
-
-    public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String password, String language, Company company) {
-        this.personId = personId;
+    public Person(){
+        this.personId = sequence++;
+    }
+    public Person(String firstName, String lastName, Integer age, String emailAddress, String password, String language, Company company) {
+        this();
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -23,6 +27,14 @@ public class Person {
         this.password = password;
         this.language = language;
         this.company = company;
+    }
+    public Person(String firstName, String lastName, Company company) {
+        this(firstName,lastName,-1,null,null,null,company);
+    }
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Integer getPersonId() {

@@ -6,7 +6,7 @@ public class Course {
 
     public static final Course NULL = new Course ();
 
-    Long courseId;
+    Integer courseId;
     String shortTitle;
     String longTitle;
     Integer numberOfDays;
@@ -15,7 +15,7 @@ public class Course {
 
     public Course(){}
 
-    public Course(Long courseId, String shortTitle, String longTitle, Integer numberOfDays, Integer pricePerDay) {
+    public Course(Integer courseId, String shortTitle, String longTitle, Integer numberOfDays, Integer pricePerDay) {
         this.courseId = courseId;
         this.shortTitle = shortTitle;
         this.longTitle = longTitle;
@@ -23,11 +23,11 @@ public class Course {
         this.pricePerDay = pricePerDay;
     }
 
-    public Long getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(Long courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
