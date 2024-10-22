@@ -13,7 +13,7 @@ public class PersonTests {
 
         Company company = new Company("Abis", "+32472123456", "4234535348574384579", address);
 
-        Person person = new Person("John", "Doe",company);
+        Person person = new Person("John", "Doe");
 
         person.setCompany(company);
 
@@ -40,6 +40,10 @@ public class PersonTests {
 
         for (Person person1 : persons) {
             System.out.println(person1);
+            person1.attendCourse();
+            if(person1 instanceof Instructor){
+                ((Instructor) person1).teach();
+            }
         }
     }
 }
