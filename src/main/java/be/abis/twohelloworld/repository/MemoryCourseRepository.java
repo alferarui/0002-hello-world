@@ -5,6 +5,7 @@ import be.abis.twohelloworld.model.Course;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MemoryCourseRepository implements CourseRepository {
 
@@ -24,11 +25,11 @@ public class MemoryCourseRepository implements CourseRepository {
         }
     }
     ArrayList<Course> courses = new ArrayList<>(){{
-        add(new Course(1,"Korean Kitchen","Basics of Korean Kitchen",10,100));
-        add(new Course(2,"Assembly Language for Kindergarden","Accessible introduction to microcontrollers",10,100));
+        add(new Course(1,"Korean Kitchen","Basics of Korean Kitchen",2,100));
+        add(new Course(2,"Assembly Language for Kindergarden","Accessible introduction to microcontrollers",5,100));
         add(new Course(3,"Around the World in 80 days","Meditation",10,100));
         add(new Course(4,"Chinese","introductory course to Chinese Writing",10,100));
-        add(new Course(6,"Bricolage","the basics of household maintenance",10,100));
+        add(new Course(6,"Bricolage","the basics of household maintenance",2,100));
     }};
 
     @Override
@@ -45,6 +46,11 @@ public class MemoryCourseRepository implements CourseRepository {
     public Course findCourseByShortTitle(String shortTitle) {
         String matchString = "^" +shortTitle.replaceAll("[*]",".*?")+ "$";
         return courses.stream().filter(c -> c.getShortTitle().matches(matchString)).findFirst().orElse(Course.NULL);
+    }
+
+    @Override
+    public List<Course> findCoursesByDuration(int duration) {
+        return courses.stream().filter(c -> c.getNumberOfDays() == duration).toList();
     }
 
     @Override

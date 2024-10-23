@@ -1,5 +1,6 @@
 package be.abis.twohelloworld.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Instructor extends Person {
@@ -9,8 +10,8 @@ public class Instructor extends Person {
         super();
     }
 
-    public Instructor(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company, double salary) {
-        super(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
+    public Instructor(Integer personId, String firstName, String lastName, LocalDate birthday, String emailAddress, String homeAddress, String password, String language, Company company, double salary) {
+        super(personId, firstName, lastName, birthday, emailAddress, homeAddress, password, language, company);
         this.salary = salary;
     }
 
@@ -43,7 +44,7 @@ public class Instructor extends Person {
                 "personId=" + ((getPersonId() ==null)?"null":(getPersonId())) +
                 ", firstName='" + ((getFirstName() ==null)?"null":('"' + getFirstName() + '"'))  +
                 ", lastName=" + ((getLastName() ==null)?"null":('"' + getLastName() + '"'))  +
-                ", age=" + getAge() +
+                ", age=" + getBirthday() +
                 ", emailAddress=" + ((getEmailAddress() ==null)?"null":('"' + getEmailAddress() + '"'))  +
                 ", homeAddress=" + ((getHomeAddress() ==null)?"null":('"' + getHomeAddress() + '"'))  +
                 ", password=" + ((getPassword() ==null)?"null":('"' + getPassword() + '"'))  +

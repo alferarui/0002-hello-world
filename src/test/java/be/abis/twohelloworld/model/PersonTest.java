@@ -2,17 +2,23 @@ package be.abis.twohelloworld.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import static be.abis.twohelloworld.model.Person.getStarDate1970;
+import static java.lang.Math.floor;
 
 class PersonTest {
 
     @Test
     void testToString() {
+        System.out.println(LocalDate.now().format(DateTimeFormatter.ISO_DATE));
+
         Person person = new Person(){{
             Person p = this;
             p.setFirstName("John");
             p.setLastName("Doe");
-            p.setAge(35);
+            p.setBirthday(LocalDate.parse("1988-10-01", DateTimeFormatter.ISO_DATE));
             p.setPersonId(1);
             p.setEmailAddress("john.doe@abis.be");
             p.setPassword("34rFwe4£$R3ddr!");
@@ -36,12 +42,25 @@ class PersonTest {
 
         System.out.println(person.toString());
 
+        double age = getStarDate1970(LocalDate.now()) - getStarDate1970(person.getBirthday());
         System.out.println(
                 "\"" + person.getFirstName() + " " + person.getLastName()
-                + " is " + person.getAge() + " old and works for "
+                + " is " + ((int)floor(age)) + " year" + (age>=2?'s':"")+ " old and works for "
                 + person.getCompany().getName()+" in " + person.getCompany().getAddress().getTown()
                 + "`"
         );
 
+    }
+
+    @Test
+    void getStarTrekIntStarDateTest() {
+        Double a = getStarDate1970(LocalDate.now());
+        Double b = getStarDate1970(LocalDate.parse("1999-10-01", DateTimeFormatter.ISO_DATE));
+        Double c = getStarDate1970(LocalDate.parse("1978-10-01", DateTimeFormatter.ISO_DATE));
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(a-b);
+        System.out.println(a-c);
     }
 }

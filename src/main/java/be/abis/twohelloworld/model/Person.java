@@ -1,5 +1,8 @@
 package be.abis.twohelloworld.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.Objects;
 
 public class Person {
@@ -7,7 +10,7 @@ public class Person {
     private Integer personId;
     private String firstName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthday;
     private String emailAddress;
     private String homeAddress;
     private String password;
@@ -17,12 +20,12 @@ public class Person {
     public Person(){
     }
 
-    public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company) {
+    public Person(Integer personId, String firstName, String lastName, LocalDate birthday, String emailAddress, String homeAddress, String password, String language, Company company) {
         this();
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthday = birthday;
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
         this.password = password;
@@ -54,12 +57,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getEmailAddress() {
@@ -107,20 +110,30 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(personId, person.personId) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(age, person.age) && Objects.equals(emailAddress, person.emailAddress) && Objects.equals(homeAddress, person.homeAddress) && Objects.equals(password, person.password) && Objects.equals(language, person.language) && Objects.equals(company, person.company);
+        return Objects.equals(personId, person.personId) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(birthday, person.birthday) && Objects.equals(emailAddress, person.emailAddress) && Objects.equals(homeAddress, person.homeAddress) && Objects.equals(password, person.password) && Objects.equals(language, person.language) && Objects.equals(company, person.company);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
+        return Objects.hash(personId, firstName, lastName, birthday, emailAddress, homeAddress, password, language, company);
     }
 
+    public static Double getStarDate1970(LocalDate ld){
+        int currentYear = ld.getYear();
+        int dayOfYear = ld.getDayOfYear();
+        int totalDaysInYear = ld.lengthOfYear();
+        double dayOfYearFraction = (double) dayOfYear / totalDaysInYear;
+        return (currentYear - 1970) + (dayOfYearFraction);
+    }
     @Override
     public String toString() {
+
+        Double age = getStarDate1970(LocalDate.now()) - getStarDate1970(this.getBirthday());
         return "Person{" +
                 "personId=" + ((personId==null)?"null":(personId)) +
                 ", firstName=" + ((firstName==null)?"null":('"' + firstName + '"'))  +
                 ", lastName=" + ((lastName==null)?"null":('"' + lastName + '"'))  +
+                ", birthday=" + birthday.format(DateTimeFormatter.ISO_LOCAL_DATE) +
                 ", age=" + age +
                 ", emailAddress=" + ((emailAddress==null)?"null":('"' + emailAddress + '"'))  +
                 ", homeAddress=" + ((homeAddress==null)?"null":('"' + homeAddress + '"'))  +

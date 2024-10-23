@@ -5,6 +5,8 @@ import be.abis.twohelloworld.model.Company;
 import be.abis.twohelloworld.model.Person;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -50,7 +52,7 @@ public class FilePersonRepository implements PersonRepository {
 					p.setPersonId(!vals[0].equals("null") ? Integer.parseInt(vals[0]) : 0);
 					p.setFirstName(!vals[1].equals("null") ? vals[1] : null);
 					p.setLastName(!vals[2].equals("null") ? vals[2] : null);
-					p.setAge(Integer.parseInt(!vals[3].equals("null") ? vals[3] : "0"));
+					p.setBirthday(LocalDate.parse(!vals[3].equals("null") ? vals[3] : "1970-01-01 00:00:00Z",DateTimeFormatter.ISO_DATE));
 					p.setEmailAddress(!vals[4].equals("null") ? vals[4] : null);
 					p.setPassword(!vals[5].equals("null") ? vals[5] : null);
 					p.setLanguage(!vals[6].equals("null") ? vals[6] : null);
@@ -160,7 +162,7 @@ public class FilePersonRepository implements PersonRepository {
 		sb.append(p.getPersonId()).append(";")
 				.append(p.getFirstName() + ";")
 				.append(p.getLastName() + ";")
-                .append((p.getAge() != 0 ? p.getAge() : null) + ";")
+                .append((p.getBirthday() != null ? p.getBirthday().format(DateTimeFormatter.ISO_DATE) : null) + ";")
 				.append(p.getEmailAddress() + ";")
                 .append(p.getPassword() + ";")
 				.append(p.getLanguage().toLowerCase() + ";")

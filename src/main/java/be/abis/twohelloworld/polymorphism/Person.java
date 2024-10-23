@@ -1,5 +1,7 @@
 package be.abis.twohelloworld.polymorphism;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Person {
@@ -9,7 +11,7 @@ public class Person {
     private Integer personId;
     private String firstName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthdate;
     private String emailAddress;
     private String homeAddress;
     private String password;
@@ -26,12 +28,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company) {
+    public Person(Integer personId, String firstName, String lastName, LocalDate birthdate, String emailAddress, String homeAddress, String password, String language, Company company) {
         this();
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthdate = birthdate;
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
         this.password = password;
@@ -39,14 +41,14 @@ public class Person {
         this.company = company;
     }
 
-    public Person(Company company, String language, String password, String homeAddress, String emailAddress, Integer age, String lastName, String firstName) {
+    public Person(Company company, String language, String password, String homeAddress, String emailAddress, LocalDate birthday, String lastName, String firstName) {
         this();
         this.company = company;
         this.language = language;
         this.password = password;
         this.homeAddress = homeAddress;
         this.emailAddress = emailAddress;
-        this.age = age;
+        this.birthdate = birthdate;
         this.lastName = lastName;
         this.firstName = firstName;
     }
@@ -83,12 +85,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getEmailAddress() {
@@ -136,12 +138,20 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(personId, person.personId) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(age, person.age) && Objects.equals(emailAddress, person.emailAddress) && Objects.equals(homeAddress, person.homeAddress) && Objects.equals(password, person.password) && Objects.equals(language, person.language) && Objects.equals(company, person.company);
+        return Objects.equals(personId, person.personId)
+                && Objects.equals(firstName, person.firstName)
+                && Objects.equals(lastName, person.lastName)
+                && Objects.equals(birthdate, person.birthdate)
+                && Objects.equals(emailAddress, person.emailAddress)
+                && Objects.equals(homeAddress, person.homeAddress)
+                && Objects.equals(password, person.password)
+                && Objects.equals(language, person.language)
+                && Objects.equals(company, person.company);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
+        return Objects.hash(personId, firstName, lastName, birthdate, emailAddress, homeAddress, password, language, company);
     }
 
     @Override
@@ -150,7 +160,7 @@ public class Person {
                 "personId=" + ((personId==null)?"null":(personId)) +
                 ", firstName='" + ((firstName==null)?"null":('"' + firstName + '"'))  +
                 ", lastName=" + ((lastName==null)?"null":('"' + lastName + '"'))  +
-                ", age=" + age +
+                ", birthdate=" + birthdate +
                 ", emailAddress=" + ((emailAddress==null)?"null":('"' + emailAddress + '"'))  +
                 ", homeAddress=" + ((homeAddress==null)?"null":('"' + homeAddress + '"'))  +
                 ", password=" + ((password==null)?"null":('"' + password + '"'))  +

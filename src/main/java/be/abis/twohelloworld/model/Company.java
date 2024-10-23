@@ -1,16 +1,12 @@
 package be.abis.twohelloworld.model;
 
-import be.alferarui.csvmagic.CsvMagicId;
-import be.alferarui.csvmagic.CsvMagicSerializable;
 
 import java.util.Objects;
 
-@CsvMagicSerializable
 public class Company {
     private Long companyId;
     private String name;
     private String telephoneNumber;
-    @CsvMagicId
     private String vatNr;
     private Address address;
 

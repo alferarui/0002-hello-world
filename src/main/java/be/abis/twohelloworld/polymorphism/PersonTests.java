@@ -5,6 +5,7 @@ import be.abis.twohelloworld.polymorphism.Company;
 import be.abis.twohelloworld.polymorphism.Instructor;
 import be.abis.twohelloworld.polymorphism.Person;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PersonTests {
@@ -21,7 +22,7 @@ public class PersonTests {
 
         System.out.println(
                 "\"" + person.getFirstName() + " " + person.getLastName()
-                        + " is " + person.getAge() + " old and works for "
+                        + " is " + person.getBirthdate().format(DateTimeFormatter.ISO_DATE) + " old and works for "
                         + person.getCompany().getName() + " in " + person.getCompany().getAddress().getTown()
                         + "\""
         );

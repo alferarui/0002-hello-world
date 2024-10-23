@@ -68,6 +68,21 @@ class CsvFileCourseRepositoryTest {
         System.out.println(c);
         assertEquals(c.toString(),Course.NULL.toString());
     }
+    @Test
+    void findCourseByDurationTest() {
+        List<Course> courses = repo.findCoursesByDuration(2);
+        System.out.println(courses);
+        System.out.println(courses.size());
+        assertEquals(2,courses.size());
+        courses = repo.findCoursesByDuration(5);
+        System.out.println(courses);
+        System.out.println(courses.size());
+        assertEquals(1,courses.size());
+        courses = repo.findCoursesByDuration(10);
+        System.out.println(courses);
+        System.out.println(courses.size());
+        assertEquals(2,courses.size());
+    }
 
     @Test
     void addCourseTest() {

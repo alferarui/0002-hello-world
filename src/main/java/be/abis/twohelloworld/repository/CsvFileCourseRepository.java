@@ -70,6 +70,11 @@ public class CsvFileCourseRepository implements CourseRepository{
     }
 
     @Override
+    public List<Course> findCoursesByDuration(int duration) {
+        return memoryCourseRepository.findCoursesByDuration(duration);
+    }
+
+    @Override
     public void addCourse(Course c) {
         load();
         memoryCourseRepository.addCourse(c);
