@@ -36,6 +36,12 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+task hahahahha {
+    doLast{
+        println('hello world muahahahah !')
+    }
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.annotationProcessorPath = configurations.annotationProcessor
 }

@@ -1,5 +1,8 @@
-static String generate(String className, List<String> idFields, List<String> fieldNames) {
-    return """
+static LinkedHashMap<String, GString> generate(String packageName,String className, List<String> idFields, List<String> fieldNames) {
+    GString source = """
+package ${packageName};
+
+
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.stream.Collectors
@@ -83,11 +86,17 @@ class CsvStorage${className}Repository {
 
     // Load entities from a CSV file
     private List<${className}> loadFromCsv(String filePath) {
-        def lines = Files.readAllLines(Paths.get(filePath))
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        for(String line : lines){
+            
+        }
         return lines.collect { line ->
             def parts = line.split(';')
-            new ${className}(
-                ${fieldNames.collect { field -> "$field: parseField(parts[${fieldNames.indexOf(field)}], ${getTypeForField(className, field)})" }.join(',\n                    ')}
+            new ${className}(){{
+                ${(idFields+fieldNames).stream().map{ field -> 
+                    "set${field.capitalize()}(parts[${fieldNames.indexOf(field)}]);"
+                }.toList().join('\n                ')
+            }}
             )
         }
     }
@@ -108,4 +117,12 @@ class CsvStorage${className}Repository {
     }
 }
 """
+    GString filename = "CsvStorage${className}Repository.java"
+    return [
+            filename : filename,
+            source: source
+    ]
 }
+
+// Return the function so it can be used after the script is loaded
+return this.&generate

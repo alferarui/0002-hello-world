@@ -1,12 +1,18 @@
 package be.abis.twohelloworld.model;
 
+import be.alferarui.csvmagic.MagicCsvId;
+
 import java.util.Objects;
 
+
 public class Address {
-    private Long addressId;
+    @MagicCsvId
     private String street;
+    @MagicCsvId
     private String nr;
+    @MagicCsvId
     private String zipCode;
+    private Long addressId;
     private String town;
 
     public Address(){}
