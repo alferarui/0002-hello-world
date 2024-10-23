@@ -21,6 +21,7 @@ class InMemoryAddressRepository {
     public List<Address> all(){
         return storage;
     }
+
     // Add an entity to the repository
     public void add(Address ent) {
         if (storage.stream().noneMatch(e -> matchesId(e, ent))) {

@@ -1,5 +1,6 @@
 package be.abis.twohelloworld.model;
 
+import be.alferarui.csvmagic.MagicCsvField;
 import be.alferarui.csvmagic.MagicCsvId;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ public class Address {
     private String nr;
     @MagicCsvId
     private String zipCode;
+    @MagicCsvField(serializer = "String.valueOf", deserializer="Long.parseLong")
     private Long addressId;
     private String town;
 

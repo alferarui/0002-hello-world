@@ -1,5 +1,6 @@
 
-package ${packageName};
+
+package be.abis.twohelloworld.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,45 +9,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CsvStorage${className}Repository {
+class CsvStorageAddressRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final InMemory${className}Repository memoryRepository = new InMemory${className}Repository();
+    private final InMemoryAddressRepository memoryRepository = new InMemoryAddressRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public CsvStorage${className}Repository() {
+    public CsvStorageAddressRepository() {
         load();
     }
 
-    public CsvStorage${className}Repository(String filePath) {
+    public CsvStorageAddressRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    void add(${className} ent) {
+    void add(Address ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    void remove(${className} ent) {
+    void remove(Address ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    void update(${className} ent) {
+    void update(Address ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    List<${className}> find(Predicate<? super ${className}> predicate) {
+    List<Address> find(Predicate<? super Address> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    List<${className}> match(String regexpString) {
+    List<Address> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -58,21 +59,15 @@ class CsvStorage${className}Repository {
                 final List<String> lines = Files.readAllLines(Paths.get(csvFilePath));
                 for(String line:lines){
                     var cells = line.split(";");
-                /*
-
-                    new ${className}(){{
-                        ${(idFields+fieldNames).stream().map{ field ->
-                            "set${field.capitalize()}(${deserializer}parts[${fieldNames.indexOf(field)}]);"
-                        }.toList().join('\n                ')
-                    }}
-                 */
-                    memoryRepository.add(
-                            new ${className}(){{
-                                set${className}Id(Long.parseLong(cells[0]));
-                                setStreet(String.valueOf(cells[1]));
-                            }}
-                    );
-
+                   memoryRepository.add(
+                           new Address(){{
+                               setStreet(String.valueOf(cells[0]));
+                               setNr(String.valueOf(cells[1]));
+                               setZipCode(String.valueOf(cells[2]));
+                               setAddressId(Long.parseLong(cells[3]));
+                               setTown(String.valueOf(cells[4]));
+                           }}
+                   );
                 }
                 memoryIsFresh=true;
             } catch (IOException e) {
@@ -89,12 +84,12 @@ class CsvStorage${className}Repository {
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(${paramName} ->
-                        ${paramName}.getStreet()+";" +
-                        ${paramName}.getNr()+";" +
-                        ${paramName}.getZipCode()+";" +
-                        ${paramName}.get${className}Id()+";" +
-                        ${paramName}.getTown()
+                .map(address ->
+                        address.getStreet() + ";"
+                            + address.getNr() + ";"
+                            + address.getZipCode() + ";"
+                            + address.getAddressId() + ";"
+                            + address.getTown()
                 )
                 .toList();
         try {
@@ -104,3 +99,4 @@ class CsvStorage${className}Repository {
         }
     }
 }
+

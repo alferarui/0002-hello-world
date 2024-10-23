@@ -7,4 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface MagicCsvId {}
+public @interface MagicCsvField {
+    public String deserializer() default "String.valueOf";
+    public String serializer() default "Object.toString";
+}

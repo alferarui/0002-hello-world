@@ -21,6 +21,7 @@ def getClassInfo(String sourceFilePath) {
     def className = classDeclaration.nameAsString
     def idFields = []
     def regularFields = []
+    def types = []
 
     // Iterate over all field declarations in the class
     classDeclaration.getFields().each { field ->
@@ -29,9 +30,9 @@ def getClassInfo(String sourceFilePath) {
             def isIdField = field.getAnnotations().any { it.nameAsString == 'MagicCsvId' }
 
             if (isIdField) {
-                idFields.add(fieldName)
+                idFields.add([name:fieldName,type:variable.typeAsString])
             } else {
-                regularFields.add(fieldName)
+                regularFields.add([name:fieldName,type:variable.typeAsString])
             }
         }
     }
@@ -41,7 +42,8 @@ def getClassInfo(String sourceFilePath) {
             packageName: packageDeclaration.toString(),
             className    : className,
             idFields     : idFields,
-            regularFields: regularFields
+            regularFields: regularFields,
+            types: types
     ]
 }
 
@@ -59,7 +61,7 @@ def listAvailablePlugins(File currentDir) {
 }
 
 // Function to load and execute the corresponding repository generator plugin
-LinkedHashMap<String, GString> executeRepositoryGenerator(String pluginName, String packageName, String className, List<String> idFields, List<String> fieldNames) {
+LinkedHashMap<String, GString> executeRepositoryGenerator(String pluginName, String packageName, String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
     // Get the absolute path of the current directory (where this script is located)
     def currentDir = new File('scripts').absoluteFile
     //println "using current dir $currentDir"

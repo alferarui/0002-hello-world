@@ -1,5 +1,7 @@
-static LinkedHashMap<String, GString>  generate(String packageName,String className, List<String> idFields, List<String> fieldNames) {
+static LinkedHashMap<String, GString>  generate(String packageName,String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
     def paramName=className.toLowerCase()
+    def allFields = (idFields + fieldNames)
+    def empty = [[name:"",type:""]]
     GString source = """
 package ${packageName};
 
@@ -11,7 +13,16 @@ import java.util.function.Predicate;
 /**
  * @apiNote generated using generator.java.class_inmem_repository.groovy generator
  *          Target entity ${packageName}.${className}
- *          Entity Fields ${([""] + idFields).join('\n *           - (Id) ')}${([""] + fieldNames).join('\n *           - ')}
+ *          Entity Fields ${
+                (empty + idFields).stream()
+                .map{it.name}
+                .toList()
+                .join('\n *           - (Id) ')
+                }${
+                    (empty + fieldNames).stream()
+                        .map{it.name}
+                        .toList().join('\n *           - ')
+                }
  */
 class InMemory${className}Repository {
     private final ArrayList<${className}> storage = new ArrayList<>();
@@ -56,12 +67,18 @@ class InMemory${className}Repository {
 
     private String stringify${className}(${className} ${paramName}) {
         return ${
-        (idFields + fieldNames).stream().map { fieldName -> """${paramName}.get${fieldName.capitalize()}()""" }.toList().join('+ "\$" +')
+            allFields.stream()
+                 .map { field -> """${paramName}.get${field.name.capitalize()}()""" }
+                 .toList()
+                 .join('+ "\$" +')
         };
     }
     private String stringify${className}Id(${className} ${paramName}) {
         return ${
-            idFields.stream().map { fieldName -> """${paramName}.get${fieldName.capitalize()}()""" }.toList().join('+ "$" +')
+            idFields.stream()
+                .map { field -> """${paramName}.get${field.name.capitalize()}()""" }
+                .toList()
+                .join('+ "$" +')
         };
     }
 
