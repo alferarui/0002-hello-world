@@ -21,14 +21,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // Annotation Processor dependencies
-    implementation 'com.squareup:javapoet:1.13.0' // for generating code
-    implementation 'com.google.auto.service:auto-service-annotations:1.1.1' // For processor annotations
-
-    // Annotation Processor dependencies
-    annotationProcessor 'com.google.auto.service:auto-service:1.1.1' // For processor registration
-
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
 }
 
 sourceSets {
