@@ -1,5 +1,5 @@
 
-package be.abis.csvmagic.repository;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
 
@@ -62,7 +62,7 @@ class CourseMemoryRepository implements CourseRepository{
     }
 
     private String stringify(Course course) {
-        return (course.getShortTitle())+ "$" +(course.getNULL())+ "$" +(course.getCourseId())+ "$" +(course.getLongTitle())+ "$" +(course.getNumberOfDays())+ "$" +(course.getPricePerDay());
+        return (course.getShortTitle())+ "$" /*+(course.getNULL())*/+ "$" +(course.getCourseId())+ "$" +(course.getLongTitle())+ "$" +(course.getNumberOfDays())+ "$" +(course.getPricePerDay());
     }
     private String stringifyId(Course course) {
         return (course.getShortTitle());

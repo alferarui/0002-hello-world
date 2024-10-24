@@ -1,7 +1,7 @@
 
-package be.abis.csvmagic.repository;
+package be.abis.twohelloworld.repository;
 
-import be.abis.twohelloworld.model.Course;
+import be.abis.twohelloworld.model.Company;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,16 +9,16 @@ import java.util.function.Predicate;
 /**
  * generated source
  **/
-interface CourseRepository {
+interface CompanyRepository {
     // Add an entity to the repository
-    void add(Course ent);
+    void add(Company ent);
     // Remove an entity from the repository
-    void remove(Course ent);
+    void remove(Company ent);
     // Update an entity in the repository
-    void update(Course ent);
+    void update(Company ent);
     // Find entities using a lambda (predicate);
-    List<Course> find(Predicate<? super Course> predicate);
+    List<Company> find(Predicate<? super Company> predicate);
     // Match entities using a regular expression on all fields (full-text search)
-    List<Course> match(String regexpString);
+    List<Company> match(String regexpString);
 }
 

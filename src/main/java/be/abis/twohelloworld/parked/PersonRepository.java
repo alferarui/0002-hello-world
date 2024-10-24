@@ -1,7 +1,6 @@
 package be.abis.twohelloworld.parked;
 
 
-import be.abis.twohelloworld.model.Person;
 
 import java.io.IOException;
 import java.util.ArrayList;

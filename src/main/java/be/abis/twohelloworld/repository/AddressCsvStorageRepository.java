@@ -1,8 +1,8 @@
 
 
-package be.abis.csvmagic.repository;
+package be.abis.twohelloworld.repository;
 
-import be.abis.twohelloworld.model.Person;
+import be.abis.twohelloworld.model.Address;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,45 +11,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class PersonCsvStorageRepository implements PersonRepository, SaverRepository {
+class AddressCsvStorageRepository implements AddressRepository, SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final PersonMemoryRepository memoryRepository = new PersonMemoryRepository();
+    private final AddressMemoryRepository memoryRepository = new AddressMemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public PersonCsvStorageRepository() {
+    public AddressCsvStorageRepository() {
         load();
     }
 
-    public PersonCsvStorageRepository(String filePath) {
+    public AddressCsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    public void add(Person ent) {
+    public void add(Address ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    public void remove(Person ent) {
+    public void remove(Address ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    public void update(Person ent) {
+    public void update(Address ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    public List<Person> find(Predicate<? super Person> predicate) {
+    public List<Address> find(Predicate<? super Address> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    public List<Person> match(String regexpString) {
+    public List<Address> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -62,15 +62,12 @@ class PersonCsvStorageRepository implements PersonRepository, SaverRepository {
                 for(String line:lines){
                     var cells = line.split(";");
                    memoryRepository.add(
-                           new Person(){{
-                               setFirstName(String.valueOf(cells[0]));
-                               setPersonId(Integer.parseInt(cells[1]));
-                               setLastName(String.valueOf(cells[2]));
-                               setBirthday(LocalDate.parse(cells[3]));
-                               setEmailAddress(String.valueOf(cells[4]));
-                               setHomeAddress(String.valueOf(cells[5]));
-                               setPassword(String.valueOf(cells[6]));
-                               setLanguage(String.valueOf(cells[7]));
+                           new Address(){{
+                               setStreet(String.valueOf(cells[0]));
+                               setNr(String.valueOf(cells[1]));
+                               setZipCode(String.valueOf(cells[2]));
+                               setAddressId(Long.parseLong(cells[3]));
+                               setTown(String.valueOf(cells[4]));
                            }}
                    );
                 }
@@ -89,15 +86,12 @@ class PersonCsvStorageRepository implements PersonRepository, SaverRepository {
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(person ->
-                        (person.getFirstName()) + ";"
-                            + (person.getPersonId()) + ";"
-                            + (person.getLastName()) + ";"
-                            + (person.getBirthday()) + ";"
-                            + (person.getEmailAddress()) + ";"
-                            + (person.getHomeAddress()) + ";"
-                            + (person.getPassword()) + ";"
-                            + (person.getLanguage())
+                .map(address ->
+                        (address.getStreet()) + ";"
+                            + (address.getNr()) + ";"
+                            + (address.getZipCode()) + ";"
+                            + (address.getAddressId()) + ";"
+                            + (address.getTown())
                 )
                 .toList();
         try {

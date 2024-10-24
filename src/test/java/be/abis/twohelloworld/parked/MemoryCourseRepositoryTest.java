@@ -1,4 +1,4 @@
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.parked;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

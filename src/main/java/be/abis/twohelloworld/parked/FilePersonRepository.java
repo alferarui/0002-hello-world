@@ -2,7 +2,6 @@ package be.abis.twohelloworld.parked;
 
 import be.abis.twohelloworld.model.Address;
 import be.abis.twohelloworld.model.Company;
-import be.abis.twohelloworld.model.Person;
 
 import java.io.*;
 import java.time.LocalDate;

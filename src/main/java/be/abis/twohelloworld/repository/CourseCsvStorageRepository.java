@@ -1,8 +1,8 @@
 
 
-package be.abis.csvmagic.repository;
+package be.abis.twohelloworld.repository;
 
-import be.abis.twohelloworld.model.Address;
+import be.abis.twohelloworld.model.Course;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,45 +11,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class AddressCsvStorageRepository implements AddressRepository, SaverRepository {
+class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final AddressMemoryRepository memoryRepository = new AddressMemoryRepository();
+    private final CourseMemoryRepository memoryRepository = new CourseMemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public AddressCsvStorageRepository() {
+    public CourseCsvStorageRepository() {
         load();
     }
 
-    public AddressCsvStorageRepository(String filePath) {
+    public CourseCsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    public void add(Address ent) {
+    public void add(Course ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    public void remove(Address ent) {
+    public void remove(Course ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    public void update(Address ent) {
+    public void update(Course ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    public List<Address> find(Predicate<? super Address> predicate) {
+    public List<Course> find(Predicate<? super Course> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    public List<Address> match(String regexpString) {
+    public List<Course> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -62,12 +62,13 @@ class AddressCsvStorageRepository implements AddressRepository, SaverRepository 
                 for(String line:lines){
                     var cells = line.split(";");
                    memoryRepository.add(
-                           new Address(){{
-                               setStreet(String.valueOf(cells[0]));
-                               setNr(String.valueOf(cells[1]));
-                               setZipCode(String.valueOf(cells[2]));
-                               setAddressId(Long.parseLong(cells[3]));
-                               setTown(String.valueOf(cells[4]));
+                           new Course(){{
+                               setShortTitle(String.valueOf(cells[0]));
+                               //setNULL(/*deserializer not found Course*/(cells[1]));
+                               setCourseId(Integer.parseInt(cells[2]));
+                               setLongTitle(String.valueOf(cells[3]));
+                               setNumberOfDays(Integer.parseInt(cells[4]));
+                               setPricePerDay(Integer.parseInt(cells[5]));
                            }}
                    );
                 }
@@ -86,12 +87,13 @@ class AddressCsvStorageRepository implements AddressRepository, SaverRepository 
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(address ->
-                        (address.getStreet()) + ";"
-                            + (address.getNr()) + ";"
-                            + (address.getZipCode()) + ";"
-                            + (address.getAddressId()) + ";"
-                            + (address.getTown())
+                .map(course ->
+                        (course.getShortTitle()) + ";"
+                            //+ (course.getNULL()) + ";"
+                            + (course.getCourseId()) + ";"
+                            + (course.getLongTitle()) + ";"
+                            + (course.getNumberOfDays()) + ";"
+                            + (course.getPricePerDay())
                 )
                 .toList();
         try {

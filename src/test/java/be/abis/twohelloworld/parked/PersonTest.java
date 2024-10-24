@@ -1,11 +1,13 @@
-package be.abis.twohelloworld.model;
+package be.abis.twohelloworld.parked;
 
+import be.abis.twohelloworld.model.Address;
+import be.abis.twohelloworld.model.Company;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static be.abis.twohelloworld.model.Person.getStarDate1970;
+import static be.abis.twohelloworld.utilities.MyUtillity.getStarDate1970;
 import static java.lang.Math.floor;
 
 class PersonTest {

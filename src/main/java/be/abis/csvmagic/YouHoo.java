@@ -6,9 +6,9 @@ import java.time.LocalDate;
 class YouHoo{
     @MagicCsvId
     String name;
-    @MagicCsvField
+    @MagicCsvField(serializer = "",deserializer = "")
     String value;
-    @MagicCsvField
+    @MagicCsvField(serializer = "",deserializer = "")
     LocalDate modified;
 
     public String getName() {

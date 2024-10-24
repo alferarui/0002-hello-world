@@ -1,6 +1,6 @@
 
 
-package be.abis.csvmagic.repository;
+package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Company;
 
