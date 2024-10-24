@@ -19,6 +19,7 @@ package ${packageName};
 
 import java.util.List;
 import java.util.function.Predicate;
+import ${packageName}.${className};
 
 /**
  * generated source

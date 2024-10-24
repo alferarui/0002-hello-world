@@ -8,6 +8,9 @@ static List<LinkedHashMap<String, GString>> generate(String packageName,String c
 
 package ${packageName};
 
+import ${packageName}.${className};
+import org.springframework.stereotype.Repository;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +18,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
+@Repository
 class ${className}CsvStorageRepository implements ${className}Repository,SaverRepository {
     private final File fl = new File("${className}.repository.csv");
     private final ${className}MemoryRepository memoryRepository = new ${className}MemoryRepository();
@@ -33,6 +37,7 @@ class ${className}CsvStorageRepository implements ${className}Repository,SaverRe
     // Add an entity to the repository
     public void add(${className} ent) {
         memoryRepository.add(ent);
+        save();
     }
 
     // Remove an entity from the repository
@@ -80,6 +85,9 @@ class ${className}CsvStorageRepository implements ${className}Repository,SaverRe
                 memoryRepository.clear();
                 final List<String> lines = Files.readAllLines(Paths.get(csvFilePath));
                 for(String line:lines){
+                    if (isNullOrEmpty(line)) {
+                        continue;
+                    }
                     var cells = line.split(";");
                    memoryRepository.add(
                            new ${className}(){{

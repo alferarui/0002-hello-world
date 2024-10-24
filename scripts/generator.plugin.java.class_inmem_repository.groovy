@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import ${packageName}.${className};
+import org.springframework.stereotype.Repository;
+
 
 /**
  * @apiNote generated using generator.java.class_inmem_repository.groovy generator
@@ -24,6 +27,7 @@ import java.util.function.Predicate;
                         .toList().join('\n *           - ')
                 }
  */
+@Repository
 class ${className}MemoryRepository implements ${className}Repository{
     private final ArrayList<${className}> storage = new ArrayList<>();
 
