@@ -26,9 +26,7 @@ import java.util.function.Predicate;
  */
 class ${className}MemoryRepository implements ${className}Repository{
     private final ArrayList<${className}> storage = new ArrayList<>();
-    public List<${className}> all(){
-        return storage;
-    }
+
     public ${className}MemoryRepository(){}
 
     // Add an entity to the repository
@@ -61,9 +59,20 @@ class ${className}MemoryRepository implements ${className}Repository{
     public List<${className}> match(String regexpString) {
         return storage.stream().filter(${paramName} -> stringify(${paramName}).matches(regexpString)).toList();
     }
+    
+    @Override
+    public List<${className}> all(){
+        return storage;
+    }
 
+    @Override
     public void clear(){
         storage.clear();
+    }
+    
+    @Override
+    public int count() {
+        return storage.size();
     }
 
     private String stringify(${className} ${paramName}) {

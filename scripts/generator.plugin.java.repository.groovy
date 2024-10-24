@@ -34,6 +34,10 @@ interface ${className}Repository {
     List<${className}> find(Predicate<? super ${className}> predicate);
     // Match entities using a regular expression on all fields (full-text search)
     List<${className}> match(String regexpString);
+
+    int count();
+    void clear();
+    List<${className}>  all();
 }
 
 """

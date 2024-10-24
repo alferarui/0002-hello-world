@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 class ${className}CsvStorageRepository implements ${className}Repository,SaverRepository {
-    private final File fl = new File("CsvFileCourse.repository.csv");
+    private final File fl = new File("${className}.repository.csv");
     private final ${className}MemoryRepository memoryRepository = new ${className}MemoryRepository();
-    private String csvFilePath = "CsvFileCourse.repository.csv";
+    private String csvFilePath = "${className}.repository.csv";
     boolean memoryIsFresh=false;
 
     public ${className}CsvStorageRepository() {
@@ -55,6 +55,22 @@ class ${className}CsvStorageRepository implements ${className}Repository,SaverRe
     // Match entities using a regular expression on all fields (full-text search)
     public List<${className}> match(String regexpString) {
         return memoryRepository.match(regexpString);
+    }
+
+    @Override
+    public int count() {
+        return memoryRepository.count();
+    }
+
+    @Override
+    public void clear() {
+        memoryRepository.clear();
+        save();
+    }
+
+    @Override
+    public List<${className}> all() {
+        return memoryRepository.all();
     }
 
     public void load(){
