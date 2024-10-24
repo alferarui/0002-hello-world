@@ -1,5 +1,7 @@
 
-package be.abis.twohelloworld.model;
+package be.abis.csvmagic.repository;
+
+import be.abis.twohelloworld.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;

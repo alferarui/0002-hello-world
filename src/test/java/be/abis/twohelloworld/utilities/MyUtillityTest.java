@@ -1,11 +1,10 @@
 package be.abis.twohelloworld.utilities;
 
 import be.abis.twohelloworld.model.Course;
-import be.abis.twohelloworld.repository.MemoryCourseRepository;
+import be.abis.twohelloworld.parked.MemoryCourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 class MyUtillityTest {
     MemoryCourseRepository memoryCourseRepository = new MemoryCourseRepository();
     @BeforeEach

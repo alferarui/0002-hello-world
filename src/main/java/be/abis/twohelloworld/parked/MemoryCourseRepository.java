@@ -1,11 +1,10 @@
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.parked;
 
 import be.abis.twohelloworld.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MemoryCourseRepository implements CourseRepository {
 

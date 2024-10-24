@@ -1,4 +1,4 @@
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.parked;
 
 public class CsvCompanyRepository {
     //CompanyCsvManager storage;

@@ -1,6 +1,8 @@
 
 
-package be.abis.twohelloworld.model;
+package be.abis.csvmagic.repository;
+
+import be.abis.twohelloworld.model.Person;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,45 +11,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CompanyCsvStorageRepository implements CompanyRepository,SaverRepository {
+class PersonCsvStorageRepository implements PersonRepository, SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final CompanyMemoryRepository memoryRepository = new CompanyMemoryRepository();
+    private final PersonMemoryRepository memoryRepository = new PersonMemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public CompanyCsvStorageRepository() {
+    public PersonCsvStorageRepository() {
         load();
     }
 
-    public CompanyCsvStorageRepository(String filePath) {
+    public PersonCsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    public void add(Company ent) {
+    public void add(Person ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    public void remove(Company ent) {
+    public void remove(Person ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    public void update(Company ent) {
+    public void update(Person ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    public List<Company> find(Predicate<? super Company> predicate) {
+    public List<Person> find(Predicate<? super Person> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    public List<Company> match(String regexpString) {
+    public List<Person> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -60,11 +62,15 @@ class CompanyCsvStorageRepository implements CompanyRepository,SaverRepository {
                 for(String line:lines){
                     var cells = line.split(";");
                    memoryRepository.add(
-                           new Company(){{
-                               setVatNr(String.valueOf(cells[0]));
-                               setCompanyId(Long.parseLong(cells[1]));
-                               setName(String.valueOf(cells[2]));
-                               setTelephoneNumber(String.valueOf(cells[3]));
+                           new Person(){{
+                               setFirstName(String.valueOf(cells[0]));
+                               setPersonId(Integer.parseInt(cells[1]));
+                               setLastName(String.valueOf(cells[2]));
+                               setBirthday(LocalDate.parse(cells[3]));
+                               setEmailAddress(String.valueOf(cells[4]));
+                               setHomeAddress(String.valueOf(cells[5]));
+                               setPassword(String.valueOf(cells[6]));
+                               setLanguage(String.valueOf(cells[7]));
                            }}
                    );
                 }
@@ -83,11 +89,15 @@ class CompanyCsvStorageRepository implements CompanyRepository,SaverRepository {
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(company ->
-                        (company.getVatNr()) + ";"
-                            + Long.valueOf(company.getCompanyId()) + ";"
-                            + (company.getName()) + ";"
-                            + (company.getTelephoneNumber())
+                .map(person ->
+                        (person.getFirstName()) + ";"
+                            + (person.getPersonId()) + ";"
+                            + (person.getLastName()) + ";"
+                            + (person.getBirthday()) + ";"
+                            + (person.getEmailAddress()) + ";"
+                            + (person.getHomeAddress()) + ";"
+                            + (person.getPassword()) + ";"
+                            + (person.getLanguage())
                 )
                 .toList();
         try {

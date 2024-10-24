@@ -1,7 +1,7 @@
 package be.abis.twohelloworld.repository;
 
-import be.abis.twohelloworld.repository.FilePersonRepository;
-import be.abis.twohelloworld.repository.PersonRepository;
+import be.abis.twohelloworld.parked.FilePersonRepository;
+import be.abis.twohelloworld.parked.PersonRepository;
 
 public class PersonRepositoryTest {
 

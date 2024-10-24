@@ -1,6 +1,8 @@
 
 
-package be.abis.twohelloworld.model;
+package be.abis.csvmagic.repository;
+
+import be.abis.twohelloworld.model.Address;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,45 +11,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CourseCsvStorageRepository implements CourseRepository,SaverRepository {
+class AddressCsvStorageRepository implements AddressRepository, SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final CourseMemoryRepository memoryRepository = new CourseMemoryRepository();
+    private final AddressMemoryRepository memoryRepository = new AddressMemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public CourseCsvStorageRepository() {
+    public AddressCsvStorageRepository() {
         load();
     }
 
-    public CourseCsvStorageRepository(String filePath) {
+    public AddressCsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    public void add(Course ent) {
+    public void add(Address ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    public void remove(Course ent) {
+    public void remove(Address ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    public void update(Course ent) {
+    public void update(Address ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    public List<Course> find(Predicate<? super Course> predicate) {
+    public List<Address> find(Predicate<? super Address> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    public List<Course> match(String regexpString) {
+    public List<Address> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -60,13 +62,12 @@ class CourseCsvStorageRepository implements CourseRepository,SaverRepository {
                 for(String line:lines){
                     var cells = line.split(";");
                    memoryRepository.add(
-                           new Course(){{
-                               setShortTitle(String.valueOf(cells[0]));
-                               setNULL(/*deserializer not found Course*/(cells[1]));
-                               setCourseId(Integer.parseInt(cells[2]));
-                               setLongTitle(String.valueOf(cells[3]));
-                               setNumberOfDays(Integer.parseInt(cells[4]));
-                               setPricePerDay(Integer.parseInt(cells[5]));
+                           new Address(){{
+                               setStreet(String.valueOf(cells[0]));
+                               setNr(String.valueOf(cells[1]));
+                               setZipCode(String.valueOf(cells[2]));
+                               setAddressId(Long.parseLong(cells[3]));
+                               setTown(String.valueOf(cells[4]));
                            }}
                    );
                 }
@@ -85,13 +86,12 @@ class CourseCsvStorageRepository implements CourseRepository,SaverRepository {
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(course ->
-                        (course.getShortTitle()) + ";"
-                            + (course.getNULL()) + ";"
-                            + (course.getCourseId()) + ";"
-                            + (course.getLongTitle()) + ";"
-                            + (course.getNumberOfDays()) + ";"
-                            + (course.getPricePerDay())
+                .map(address ->
+                        (address.getStreet()) + ";"
+                            + (address.getNr()) + ";"
+                            + (address.getZipCode()) + ";"
+                            + (address.getAddressId()) + ";"
+                            + (address.getTown())
                 )
                 .toList();
         try {

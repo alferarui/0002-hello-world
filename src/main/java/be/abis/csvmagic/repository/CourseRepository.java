@@ -1,5 +1,7 @@
 
-package be.abis.twohelloworld.model;
+package be.abis.csvmagic.repository;
+
+import be.abis.twohelloworld.model.Course;
 
 import java.util.List;
 import java.util.function.Predicate;

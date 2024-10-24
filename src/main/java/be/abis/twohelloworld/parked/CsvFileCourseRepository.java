@@ -1,4 +1,4 @@
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.parked;
 
 import be.abis.twohelloworld.model.Course;
 import org.apache.logging.log4j.util.Strings;
