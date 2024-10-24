@@ -1,4 +1,4 @@
-package be.alferarui.csvmagic;
+package be.abis.csvmagic;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,4 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface MagicCsvField {
-    public String deserializer() default "String.valueOf";
-    public String serializer() default "Object.toString";
-}
+public @interface MagicCsvReference {}

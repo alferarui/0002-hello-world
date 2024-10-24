@@ -1,4 +1,4 @@
-static LinkedHashMap<String, GString>  generate(String packageName,String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
+static List<LinkedHashMap<String, GString>>  generate(String packageName,String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
     def paramName=className.toLowerCase()
     def allFields = (idFields + fieldNames)
     def empty = [[name:"",type:""]]
@@ -24,11 +24,12 @@ import java.util.function.Predicate;
                         .toList().join('\n *           - ')
                 }
  */
-class InMemory${className}Repository {
+class ${className}MemoryRepository implements ${className}Repository{
     private final ArrayList<${className}> storage = new ArrayList<>();
     public List<${className}> all(){
         return storage;
     }
+    public ${className}MemoryRepository(){}
 
     // Add an entity to the repository
     public void add(${className} ent) {
@@ -58,25 +59,25 @@ class InMemory${className}Repository {
 
     // Match entities using a regular expression on all fields (full-text search)
     public List<${className}> match(String regexpString) {
-        return storage.stream().filter(${paramName} -> stringify${className}(${paramName}).matches(regexpString)).toList();
+        return storage.stream().filter(${paramName} -> stringify(${paramName}).matches(regexpString)).toList();
     }
 
     public void clear(){
         storage.clear();
     }
 
-    private String stringify${className}(${className} ${paramName}) {
+    private String stringify(${className} ${paramName}) {
         return ${
             allFields.stream()
-                 .map { field -> """${paramName}.get${field.name.capitalize()}()""" }
+                 .map { field -> """${field.serializer}(${paramName}.get${field.name.capitalize()}())""" }
                  .toList()
                  .join('+ "\$" +')
         };
     }
-    private String stringify${className}Id(${className} ${paramName}) {
+    private String stringifyId(${className} ${paramName}) {
         return ${
             idFields.stream()
-                .map { field -> """${paramName}.get${field.name.capitalize()}()""" }
+                .map { field -> """${field.serializer}(${paramName}.get${field.name.capitalize()}())""" }
                 .toList()
                 .join('+ "$" +')
         };
@@ -84,15 +85,15 @@ class InMemory${className}Repository {
 
     // Helper method to match entities by ID fields
     private boolean matchesId(${className} ${paramName}1, ${className} ${paramName}2) {
-        return stringify${className}Id(${paramName}1).equals(stringify${className}Id(${paramName}2));
+        return stringifyId(${paramName}1).equals(stringifyId(${paramName}2));
     }
 }
 """
-    GString filename="InMemory${className}Repository.java"
-    return [
+    GString filename="${className}MemoryRepository.java"
+    return [[
             filename : filename,
             source : source
-    ]
+    ]]
 }
 
 

@@ -1,17 +1,7 @@
 
-static def getDeserializer(String type){
-    switch(type){
-        case 'String' -> 'String.valueOf'
-        case 'Date' -> 'Date.parse'
-        case 'Integer' -> 'Integer.parseInt'
-        case 'Double' -> 'Double.parseDouble'
-        case 'LocalDate' -> 'LocalDate.parseDouble'
-        case 'Long' -> 'Long.parseLong'
-        default -> 'Object.valueOf'
-    }
-}
 
-static LinkedHashMap<String, GString> generate(String packageName,String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
+
+static List<LinkedHashMap<String, GString>> generate(String packageName,String className, List<HashMap<String,String>> idFields, List<HashMap<String,String>> fieldNames) {
     def paramName=className.toLowerCase()
     def allFields = (idFields + fieldNames)
     GString source = """
@@ -25,45 +15,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CsvStorage${className}Repository {
+class ${className}CsvStorageRepository implements ${className}Repository,SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final InMemory${className}Repository memoryRepository = new InMemory${className}Repository();
+    private final ${className}MemoryRepository memoryRepository = new ${className}MemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public CsvStorage${className}Repository() {
+    public ${className}CsvStorageRepository() {
         load();
     }
 
-    public CsvStorage${className}Repository(String filePath) {
+    public ${className}CsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    void add(${className} ent) {
+    public void add(${className} ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    void remove(${className} ent) {
+    public void remove(${className} ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    void update(${className} ent) {
+    public void update(${className} ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    List<${className}> find(Predicate<? super ${className}> predicate) {
+    public List<${className}> find(Predicate<? super ${className}> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    List<${className}> match(String regexpString) {
+    public List<${className}> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -85,7 +75,7 @@ class CsvStorage${className}Repository {
                                         println field.type
                                         println('===================')
                                         def fieldIndex = allFields.indexOf(field)
-                                        def fieldDeserializer = getDeserializer(field.type)
+                                        def fieldDeserializer = field.deserializer
                                         "set${field.name.capitalize()}(${fieldDeserializer}(cells[$fieldIndex]));"
                                     }.toList().join('\n                               ')
                                }
@@ -111,7 +101,7 @@ class CsvStorage${className}Repository {
                         ${allFields
                             .stream()
                             .map { field ->
-                                "${paramName}.get${field.name.capitalize()}()"
+                                "${field.serializer}(${paramName}.get${field.name.capitalize()}())"
                             }.toList().join(' + ";"\n                            + ')
                         }
                 )
@@ -125,11 +115,14 @@ class CsvStorage${className}Repository {
 }
 
 """
-    GString filename = "CsvStorage${className}Repository.java"
-    return [
+    GString filename = "${className}CsvStorageRepository.java"
+
+    ArrayList<LinkedHashMap<String, GString>> list = new ArrayList<LinkedHashMap<String, GString>>()
+    list.add([
             filename : filename,
             source: source
-    ]
+    ])
+    return list
 }
 
 // Return the function so it can be used after the script is loaded

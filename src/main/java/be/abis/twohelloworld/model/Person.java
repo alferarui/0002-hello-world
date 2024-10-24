@@ -1,5 +1,8 @@
 package be.abis.twohelloworld.model;
 
+import be.abis.csvmagic.MagicCsvId;
+import be.abis.csvmagic.MagicCsvIgnore;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
@@ -8,6 +11,7 @@ import java.util.Objects;
 public class Person {
 
     private Integer personId;
+    @MagicCsvId
     private String firstName;
     private String lastName;
     private LocalDate birthday;
@@ -15,6 +19,7 @@ public class Person {
     private String homeAddress;
     private String password;
     private String language;
+    @MagicCsvIgnore
     private Company company;
 
     public Person(){
