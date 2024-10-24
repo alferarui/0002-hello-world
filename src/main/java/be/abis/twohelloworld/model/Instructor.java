@@ -1,6 +1,11 @@
 package be.abis.twohelloworld.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import static be.abis.twohelloworld.utilities.MyUtillity.getStarDate1970;
+import static be.abis.twohelloworld.utilities.MyUtillity.isNullOrEmpty;
 
 public class Instructor extends Person {
     private double salary;
@@ -9,8 +14,8 @@ public class Instructor extends Person {
         super();
     }
 
-    public Instructor(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company, double salary) {
-        super(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
+    public Instructor(Integer personId, String firstName, String lastName, LocalDate birthday, String emailAddress, String homeAddress, String language, String phone, String mobile, String street, String number, String zipCode, String city, double salary) {
+        super(personId, firstName, lastName, birthday, emailAddress, homeAddress, language, phone, mobile, street, number, zipCode, city);
         this.salary = salary;
     }
 
@@ -39,17 +44,23 @@ public class Instructor extends Person {
 
     @Override
     public String toString() {
-        return "Instructor{" +
-                "personId=" + ((getPersonId() ==null)?"null":(getPersonId())) +
-                ", firstName='" + ((getFirstName() ==null)?"null":('"' + getFirstName() + '"'))  +
-                ", lastName=" + ((getLastName() ==null)?"null":('"' + getLastName() + '"'))  +
-                ", age=" + getAge() +
-                ", emailAddress=" + ((getEmailAddress() ==null)?"null":('"' + getEmailAddress() + '"'))  +
-                ", homeAddress=" + ((getHomeAddress() ==null)?"null":('"' + getHomeAddress() + '"'))  +
-                ", password=" + ((getPassword() ==null)?"null":('"' + getPassword() + '"'))  +
-                ", language=" + ((getLanguage() ==null)?"null":('"' + getLanguage() + '"'))  +
-                ", company=" + getCompany() +
-                "salary=" + salary +
+        double age = getStarDate1970(LocalDate.now()) - getStarDate1970(this.getBirthday());
+        return "Person{" +
+                "personId=" + getPersonId() +
+                ", firstName='" + (isNullOrEmpty(getFirstName())?"":("'" + getFirstName() + "'")) + '\'' +
+                ", lastName='" + (isNullOrEmpty(getLastName())?"":("'" + getLastName() + "'")) + '\'' +
+                ", birthday=" + getBirthday().format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                ", emailAddress='" + (isNullOrEmpty(getEmailAddress())?"":("'" + getEmailAddress() + "'")) + '\'' +
+                ", homeAddress='" + (isNullOrEmpty(getHomeAddress())?"":("'" + getHomeAddress() + "'")) + '\'' +
+                ", language='" + (isNullOrEmpty(getLanguage())?"":("'" + getLanguage() + "'")) + '\'' +
+                ", phone='" + (isNullOrEmpty(getPhone())?"":("'" + getPhone() + "'")) + '\'' +
+                ", mobile='" + (isNullOrEmpty(getMobile())?"":("'" + getMobile() + "'")) + '\'' +
+                ", street='" + (isNullOrEmpty(getStreet())?"":("'" + getStreet() + "'")) + '\'' +
+                ", number='" + (isNullOrEmpty(getNumber())?"":("'" + getNumber() + "'")) + '\'' +
+                ", zipCode='" + (isNullOrEmpty(getZipCode())?"":("'" + getZipCode() + "'")) + '\'' +
+                ", city='" + (isNullOrEmpty(getCity())?"":("'" + getCity() + "'")) + '\'' +
+                ", salary='" + getSalary() +
+                ", age=" + age +
                 '}';
     }
 }

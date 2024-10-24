@@ -1,5 +1,7 @@
 package be.abis.twohelloworld.model;
 
+import be.abis.csvmagic.MagicCsvId;
+
 import java.util.Objects;
 
 public class Course {
@@ -7,6 +9,7 @@ public class Course {
     public static final Course NULL = new Course ();
 
     private Integer courseId;
+    @MagicCsvId
     private String shortTitle;
     private String longTitle;
     private Integer numberOfDays;

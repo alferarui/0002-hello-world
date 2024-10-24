@@ -1,12 +1,20 @@
 package be.abis.twohelloworld.model;
 
+import be.abis.csvmagic.MagicCsvField;
+import be.abis.csvmagic.MagicCsvId;
+
 import java.util.Objects;
 
+
 public class Address {
-    private Long addressId;
+    @MagicCsvId
     private String street;
+    @MagicCsvId
     private String nr;
+    @MagicCsvId
     private String zipCode;
+    @MagicCsvField(serializer = "", deserializer="Long.parseLong")
+    private Long addressId;
     private String town;
 
     public Address(){}

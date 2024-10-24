@@ -1,33 +1,50 @@
 package be.abis.twohelloworld.model;
 
+import be.abis.csvmagic.MagicCsvId;
+import be.abis.csvmagic.MagicCsvIgnore;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.Objects;
+
+import static be.abis.twohelloworld.utilities.MyUtillity.getStarDate1970;
+import static be.abis.twohelloworld.utilities.MyUtillity.isNullOrEmpty;
 
 public class Person {
 
     private Integer personId;
     private String firstName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthday;
+    @MagicCsvId
     private String emailAddress;
     private String homeAddress;
-    private String password;
     private String language;
-    private Company company;
+    private String phone;
+    private String mobile;
+    private String street;
+    private String number;
+    private String zipCode;
+    private String city;
 
-    public Person(){
+    public Person() {
     }
 
-    public Person(Integer personId, String firstName, String lastName, Integer age, String emailAddress, String homeAddress, String password, String language, Company company) {
-        this();
+    public Person(Integer personId, String firstName, String lastName, LocalDate birthday, String emailAddress, String homeAddress, String language, String phone, String mobile, String street, String number, String zipCode, String city) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthday = birthday;
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
-        this.password = password;
         this.language = language;
-        this.company = company;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.street = street;
+        this.number = number;
+        this.zipCode = zipCode;
+        this.city = city;
     }
 
     public Integer getPersonId() {
@@ -54,12 +71,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getEmailAddress() {
@@ -78,14 +95,6 @@ public class Person {
         this.homeAddress = homeAddress;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getLanguage() {
         return language;
     }
@@ -94,39 +103,72 @@ public class Person {
         this.language = language;
     }
 
-    public Company getCompany() {
-        return company;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(personId, person.personId) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(age, person.age) && Objects.equals(emailAddress, person.emailAddress) && Objects.equals(homeAddress, person.homeAddress) && Objects.equals(password, person.password) && Objects.equals(language, person.language) && Objects.equals(company, person.company);
+    public String getMobile() {
+        return mobile;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(personId, firstName, lastName, age, emailAddress, homeAddress, password, language, company);
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
+        Double age = getStarDate1970(LocalDate.now()) - getStarDate1970(this.getBirthday());
         return "Person{" +
-                "personId=" + ((personId==null)?"null":(personId)) +
-                ", firstName='" + ((firstName==null)?"null":('"' + firstName + '"'))  +
-                ", lastName=" + ((lastName==null)?"null":('"' + lastName + '"'))  +
+                "personId=" + personId +
+                ", firstName=" + (isNullOrEmpty(firstName)?"":("'" + firstName + "'")) +
+                ", lastName=" + (isNullOrEmpty(lastName)?"":("'" + lastName + "'")) +
+                ", birthday=" + birthday.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                ", emailAddress=" + (isNullOrEmpty(emailAddress)?"":("'" + emailAddress + "'")) +
+                ", homeAddress=" + (isNullOrEmpty(homeAddress)?"":("'" + homeAddress + "'")) +
+                ", language=" + (isNullOrEmpty(language)?"":("'" + language + "'")) +
+                ", phone=" + (isNullOrEmpty(phone)?"":("'" + phone + "'")) +
+                ", mobile=" + (isNullOrEmpty(mobile)?"":("'" + mobile + "'")) +
+                ", street=" + (isNullOrEmpty(street)?"":("'" + street + "'")) +
+                ", number=" + (isNullOrEmpty(number)?"":("'" + number + "'")) +
+                ", zipCode=" + (isNullOrEmpty(zipCode)?"":("'" + zipCode + "'")) +
+                ", city=" + (isNullOrEmpty(city)?"":("'" + city + "'")) +
                 ", age=" + age +
-                ", emailAddress=" + ((emailAddress==null)?"null":('"' + emailAddress + '"'))  +
-                ", homeAddress=" + ((homeAddress==null)?"null":('"' + homeAddress + '"'))  +
-                ", password=" + ((password==null)?"null":('"' + password + '"'))  +
-                ", language=" + ((language==null)?"null":('"' + language + '"'))  +
-                ", company=" + company +
                 '}';
     }
 }

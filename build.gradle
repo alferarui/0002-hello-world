@@ -21,8 +21,27 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += 'build/generated/sources/annotationProcessor/java/main'
+        }
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+task hahahahha {
+    doLast{
+        println('hello world muahahahah !')
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.annotationProcessorPath = configurations.annotationProcessor
 }

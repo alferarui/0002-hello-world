@@ -1,15 +1,27 @@
 package be.abis.twohelloworld.model;
 
+
+import be.abis.csvmagic.MagicCsvField;
+import be.abis.csvmagic.MagicCsvId;
+import be.abis.csvmagic.MagicCsvIgnore;
+import org.apache.logging.log4j.util.Strings;
+
 import java.util.Objects;
 
 public class Company {
+    @MagicCsvField(deserializer = "Long.parseLong",serializer = "Long.valueOf")
     private Long companyId;
     private String name;
     private String telephoneNumber;
+    @MagicCsvId
     private String vatNr;
+    @MagicCsvIgnore
     private Address address;
 
-    public Company() {}
+    public Company() {
+        Address a=new Address();
+
+    }
 
     public Company(Long companyId,String name, String telephoneNumber, String vatNr, Address address) {
         this.companyId = companyId;

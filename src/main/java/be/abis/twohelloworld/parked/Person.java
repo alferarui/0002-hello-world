@@ -1,64 +1,42 @@
-package be.abis.twohelloworld.polymorphism;
+package be.abis.twohelloworld.parked;
+
+import be.abis.csvmagic.MagicCsvId;
+import be.abis.csvmagic.MagicCsvIgnore;
+import be.abis.twohelloworld.model.Company;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.Objects;
 
 public class Person {
 
-    public static Integer sequence = 1;
-
     private Integer personId;
+    @MagicCsvId
     private String firstName;
     private String lastName;
-    private LocalDate birthdate;
+    private LocalDate birthday;
     private String emailAddress;
     private String homeAddress;
     private String password;
     private String language;
+    @MagicCsvIgnore
     private Company company;
 
     public Person(){
-        this.personId = sequence++;
     }
 
-    public Person(String firstName, String lastName) {
-        this();
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Person(Integer personId, String firstName, String lastName, LocalDate birthdate, String emailAddress, String homeAddress, String password, String language, Company company) {
+    public Person(Integer personId, String firstName, String lastName, LocalDate birthday, String emailAddress, String homeAddress, String password, String language, Company company) {
         this();
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthdate = birthdate;
+        this.birthday = birthday;
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
         this.password = password;
         this.language = language;
         this.company = company;
-    }
-
-    public Person(Company company, String language, String password, String homeAddress, String emailAddress, LocalDate birthday, String lastName, String firstName) {
-        this();
-        this.company = company;
-        this.language = language;
-        this.password = password;
-        this.homeAddress = homeAddress;
-        this.emailAddress = emailAddress;
-        this.birthdate = birthdate;
-        this.lastName = lastName;
-        this.firstName = firstName;
-    }
-
-    public static Integer getSequence() {
-        return sequence;
-    }
-
-    public static void setSequence(Integer sequence) {
-        Person.sequence = sequence;
     }
 
     public Integer getPersonId() {
@@ -85,12 +63,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getEmailAddress() {
@@ -141,35 +119,41 @@ public class Person {
         return Objects.equals(personId, person.personId)
                 && Objects.equals(firstName, person.firstName)
                 && Objects.equals(lastName, person.lastName)
-                && Objects.equals(birthdate, person.birthdate)
+                && Objects.equals(birthday, person.birthday)
                 && Objects.equals(emailAddress, person.emailAddress)
                 && Objects.equals(homeAddress, person.homeAddress)
-                && Objects.equals(password, person.password)
-                && Objects.equals(language, person.language)
-                && Objects.equals(company, person.company);
+                && Objects.equals(password, person.password) &&
+                Objects.equals(language, person.language) &&
+                Objects.equals(company, person.company);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId, firstName, lastName, birthdate, emailAddress, homeAddress, password, language, company);
+        return Objects.hash(personId, firstName, lastName, birthday, emailAddress, homeAddress, password, language, company);
     }
 
+    public static Double getStarDate1970(LocalDate ld){
+        int currentYear = ld.getYear();
+        int dayOfYear = ld.getDayOfYear();
+        int totalDaysInYear = ld.lengthOfYear();
+        double dayOfYearFraction = (double) dayOfYear / totalDaysInYear;
+        return (currentYear - 1970) + (dayOfYearFraction);
+    }
     @Override
     public String toString() {
+
+        Double age = getStarDate1970(LocalDate.now()) - getStarDate1970(this.getBirthday());
         return "Person{" +
                 "personId=" + ((personId==null)?"null":(personId)) +
-                ", firstName='" + ((firstName==null)?"null":('"' + firstName + '"'))  +
+                ", firstName=" + ((firstName==null)?"null":('"' + firstName + '"'))  +
                 ", lastName=" + ((lastName==null)?"null":('"' + lastName + '"'))  +
-                ", birthdate=" + birthdate +
+                ", birthday=" + birthday.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                ", age=" + age +
                 ", emailAddress=" + ((emailAddress==null)?"null":('"' + emailAddress + '"'))  +
                 ", homeAddress=" + ((homeAddress==null)?"null":('"' + homeAddress + '"'))  +
                 ", password=" + ((password==null)?"null":('"' + password + '"'))  +
                 ", language=" + ((language==null)?"null":('"' + language + '"'))  +
                 ", company=" + company +
                 '}';
-    }
-
-    public void attendCourse(){
-        System.out.println(this.firstName + " " + this.lastName + " attends course");
     }
 }

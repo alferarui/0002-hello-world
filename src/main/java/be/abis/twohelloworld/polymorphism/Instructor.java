@@ -1,5 +1,7 @@
 package be.abis.twohelloworld.polymorphism;
 
+import java.time.format.DateTimeFormatter;
+
 public class Instructor extends Person {
     private double salary;
 
@@ -25,7 +27,7 @@ public class Instructor extends Person {
                 "personId=" + ((getPersonId() ==null)?"null":(getPersonId())) +
                 ", firstName='" + ((getFirstName() ==null)?"null":('"' + getFirstName() + '"'))  +
                 ", lastName=" + ((getLastName() ==null)?"null":('"' + getLastName() + '"'))  +
-                ", age=" + getAge() +
+                ", age=" + getBirthdate().format(DateTimeFormatter.ISO_DATE) +
                 ", emailAddress=" + ((getEmailAddress() ==null)?"null":('"' + getEmailAddress() + '"'))  +
                 ", homeAddress=" + ((getHomeAddress() ==null)?"null":('"' + getHomeAddress() + '"'))  +
                 ", password=" + ((getPassword() ==null)?"null":('"' + getPassword() + '"'))  +
