@@ -32,6 +32,7 @@ class PersonCsvStorageRepository implements PersonRepository,SaverRepository {
     // Add an entity to the repository
     public void add(Person ent) {
         memoryRepository.add(ent);
+        save();
     }
 
     // Remove an entity from the repository
@@ -84,11 +85,11 @@ class PersonCsvStorageRepository implements PersonRepository,SaverRepository {
                     try{
                         memoryRepository.add(
                                 new Person(){{
-                                    setPersonId(Integer.parseInt(cells[0]));
-                                    setFirstName(String.valueOf(cells[1]));
-                                    setLastName(String.valueOf(cells[2]));
-                                    setBirthday(LocalDate.parse(cells[3]));
-                                    setEmailAddress(String.valueOf(cells[4]));
+                                    setEmailAddress(String.valueOf(cells[0]));
+                                    setPersonId(Integer.parseInt(cells[1]));
+                                    setFirstName(String.valueOf(cells[2]));
+                                    setLastName(String.valueOf(cells[3]));
+                                    setBirthday(LocalDate.parse(cells[4]));
                                     setHomeAddress(String.valueOf(cells[5]));
                                     setLanguage(String.valueOf(cells[6]));
                                     setPhone(String.valueOf(cells[7]));

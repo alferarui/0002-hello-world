@@ -3,6 +3,7 @@
 package be.abis.twohelloworld.repository;
 
 import be.abis.twohelloworld.model.Course;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +12,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
-    private final File fl = new File("CsvFileCourse.repository.csv");
+import static be.abis.twohelloworld.utilities.MyUtillity.isNullOrEmpty;
+
+@Repository
+public class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
+    private final File fl = new File("Course.repository.csv");
     private final CourseMemoryRepository memoryRepository = new CourseMemoryRepository();
-    private String csvFilePath = "CsvFileCourse.repository.csv";
+    private String csvFilePath = "Course.repository.csv";
     boolean memoryIsFresh=false;
 
     public CourseCsvStorageRepository() {
@@ -29,6 +33,7 @@ class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
     // Add an entity to the repository
     public void add(Course ent) {
         memoryRepository.add(ent);
+        save();
     }
 
     // Remove an entity from the repository
@@ -52,6 +57,20 @@ class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
     public List<Course> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
+    @Override
+    public List<Course> all(){
+        return memoryRepository.all();
+    }
+
+    @Override
+    public void clear(){
+        memoryRepository.clear();
+    }
+
+    @Override
+    public int count() {
+        return memoryRepository.count();
+    }
 
     public void load(){
         if(fl.exists() && !memoryIsFresh) {
@@ -60,20 +79,22 @@ class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
                 memoryRepository.clear();
                 final List<String> lines = Files.readAllLines(Paths.get(csvFilePath));
                 for(String line:lines){
+                    if (isNullOrEmpty(line)) {
+                        continue;
+                    }
                     var cells = line.split(";");
                    memoryRepository.add(
                            new Course(){{
                                setShortTitle(String.valueOf(cells[0]));
-                               //setNULL(/*deserializer not found Course*/(cells[1]));
-                               setCourseId(Integer.parseInt(cells[2]));
-                               setLongTitle(String.valueOf(cells[3]));
-                               setNumberOfDays(Integer.parseInt(cells[4]));
-                               setPricePerDay(Integer.parseInt(cells[5]));
+                               setCourseId(Integer.parseInt(cells[1]));
+                               setLongTitle(String.valueOf(cells[2]));
+                               setNumberOfDays(Integer.parseInt(cells[3]));
+                               setPricePerDay(Integer.parseInt(cells[4]));
                            }}
                    );
                 }
                 memoryIsFresh=true;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.out.println("error reading file");
                 throw new RuntimeException(e);
             }
@@ -89,7 +110,6 @@ class CourseCsvStorageRepository implements CourseRepository, SaverRepository {
                 .stream()
                 .map(course ->
                         (course.getShortTitle()) + ";"
-                            //+ (course.getNULL()) + ";"
                             + (course.getCourseId()) + ";"
                             + (course.getLongTitle()) + ";"
                             + (course.getNumberOfDays()) + ";"

@@ -1,5 +1,8 @@
-1;John;Doe;1989-10-20;jdoe@abis.be;def456;nl;Abis;016/245610;BE 0428.407.725;Diestsevest;32;3000;Leuven
-2;Mary;Jones;1997-10-20;mjones@abis.be;abc123;fr;Abis;016/245610;BE 0428.407.725;Diestsevest;32;3000;Leuven
-3;Bob;Smith;1971-10-20;bob.smith@oracle.com;abc986;en;Oracle;02/7191211;BE 0440.966.354;Medialaan;50;1800;Vilvoorde
-4;Betty;Jane;1991-10-20;betty.jane@abis.be;3e3e999;en;Abis;0468/222333;BE 0445.123.456;Schaarbeeklei;33;1800;Vilvoorde
-5;Michael;Lane;1969-10-20;michael.lane@abis.be;3e3e5fb8;en;Abis;0468/222323;BE 0445.123.789;Schaarbeeklei;39;1800;Vilvoorde
+jdoe@abis.be;1;John;Doe;1989-10-20;def456;nl;Abis;016/245610;BE 0428.407.725;Diestsevest;32;3000
+mjones@abis.be;2;Mary;Jones;1997-10-20;abc123;fr;Abis;016/245610;BE 0428.407.725;Diestsevest;32;3000
+bob.smith@oracle.com;3;Bob;Smith;1971-10-20;abc986;en;Oracle;02/7191211;BE 0440.966.354;Medialaan;50;1800
+betty.jane@abis.be;4;Betty;Jane;1991-10-20;3e3e999;en;Abis;0468/222333;BE 0445.123.456;Schaarbeeklei;33;1800
+michael.lane@abis.be;5;Michael;Lane;1969-10-20;3e3e5fb8;en;Abis;0468/222323;BE 0445.123.789;Schaarbeeklei;39;1800
+Jennifer.White@Intel.com;6;Jennifer;White;1995-05-25;Oak St;it;(183) 169-5778;(751) 131-5940;Maple Ave;486;86630;Philadelphia
+Jennifer.Anderson@Intel.io;7;Jennifer;Anderson;1984-12-20;Walnut Blvd;pt;(979) 967-5765;(591) 758-9037;Cherry Cir;572;93937;San Diego
+Elizabeth.Taylor@IBM.info;8;Elizabeth;Taylor;1993-09-08;Cherry Cir;zh;(489) 756-5095;(850) 771-1280;Oak St;190;59027;San Antonio

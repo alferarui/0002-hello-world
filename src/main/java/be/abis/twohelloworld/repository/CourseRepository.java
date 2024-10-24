@@ -20,5 +20,9 @@ interface CourseRepository {
     List<Course> find(Predicate<? super Course> predicate);
     // Match entities using a regular expression on all fields (full-text search)
     List<Course> match(String regexpString);
+
+    List<Course> all();
+    void clear();
+    int count();
 }
 
