@@ -30,6 +30,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc11
     implementation 'com.oracle.database.jdbc:ojdbc11:23.5.0.24.07'
 
+    // swagger / swaggerui
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
 }
 
 sourceSets {
