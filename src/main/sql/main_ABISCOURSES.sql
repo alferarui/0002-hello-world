@@ -1,13 +1,3 @@
--- auto-generated definition
-create table ABISCOURSES
-(
-    CID     CHAR(4),
-    CSTITLE CHAR(45)     not null,
-    CLTITLE VARCHAR2(60),
-    CDUR    NUMBER       not null,
-    CAPRICE NUMBER(9, 2) not null
-);
-
 INSERT INTO ABISCOURSES (CID, CSTITLE, CLTITLE, CDUR, CAPRICE) VALUES ('7800', 'IMSADFII                                     ', 'Development of conversational transactions using IMSADFII', 5, 550.00);
 INSERT INTO ABISCOURSES (CID, CSTITLE, CLTITLE, CDUR, CAPRICE) VALUES ('7801', 'IMSADFII advanced topics                     ', 'IMSADFII Advanced Topics', 3, 550.00);
 INSERT INTO ABISCOURSES (CID, CSTITLE, CLTITLE, CDUR, CAPRICE) VALUES ('7810', 'ADFPLUS                                      ', 'ADFPLUS preprocessors and utilities', 2, 550.00);

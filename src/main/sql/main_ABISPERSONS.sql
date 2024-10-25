@@ -1,19 +1,3 @@
--- auto-generated definition
-create table ABISPERSONS
-(
-    PNO     NUMBER,
-    PLNAME  CHAR(40) not null,
-    PFNAME  VARCHAR2(15),
-    PFUNC   CHAR(20),
-    PA_CONO NUMBER,
-    PADEPT  CHAR(30),
-    PTEL    CHAR(16),
-    PSEX    CHAR
-);
-
-
-
-
 INSERT INTO ABISPERSONS (PNO, PLNAME, PFNAME, PFUNC, PA_CONO, PADEPT, PTEL, PSEX) VALUES (1, 'SMITHS                                  ', 'JAN', 'TRAINING CONSULT    ', 3, 'SYSTEM SOFTWARE               ', '916/242569      ', 'M');
 INSERT INTO ABISPERSONS (PNO, PLNAME, PFNAME, PFUNC, PA_CONO, PADEPT, PTEL, PSEX) VALUES (2, 'TAVERNIER                               ', 'PETER', 'PROGRAMMER          ', 3, 'SYSTEM SOFTWARE               ', '016/242564      ', 'M');
 INSERT INTO ABISPERSONS (PNO, PLNAME, PFNAME, PFUNC, PA_CONO, PADEPT, PTEL, PSEX) VALUES (3, 'DE KEYSER                               ', 'ANN', 'PROGRAMMER          ', 3, 'SYSTEM SOFTWARE               ', null, 'F');

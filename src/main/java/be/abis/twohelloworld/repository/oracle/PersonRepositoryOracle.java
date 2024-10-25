@@ -19,14 +19,14 @@ public class PersonRepositoryOracle implements PersonRepository {
     public final RowMapper<Person> personSqliteRowMapper = (rs, rowNum) -> {
         Person person = new Person();
 
-        person.setPersonId(rs.getInt("PERSON_ID"));
-        person.setFirstName(rs.getString("FIRST_NAME"));
-        person.setLastName(rs.getString("LAST_NAME"));
+        person.setPersonId(rs.getInt("PNO"));
+        person.setFirstName(rs.getString("PLNAME"));
+        person.setLastName(rs.getString("PFNAME"));
         person.setBirthday(rs.getDate("BIRTHDAY").toLocalDate());
         person.setEmailAddress(rs.getString("EMAIL_ADDRESS"));
         person.setHomeAddress(rs.getString("HOME_ADDRESS"));
         person.setLanguage(rs.getString("LANGUAGE"));
-        person.setPhone(rs.getString("PHONE"));
+        person.setPhone(rs.getString("PTEL"));
         person.setMobile(rs.getString("MOBILE"));
         person.setStreet(rs.getString("STREET"));
         person.setNumber(rs.getString("NUMBER"));
