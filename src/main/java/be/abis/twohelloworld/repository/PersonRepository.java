@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 /**
  * generated source
  **/
-interface PersonRepository {
+public interface PersonRepository {
     // Add an entity to the repository
     void add(Person ent);
     // Remove an entity from the repository
