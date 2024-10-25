@@ -428,7 +428,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"raw": "{\r\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\r\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -447,7 +447,116 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "create-course",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"shortTitle\": \"The Art of Couch Surfing\",\r\n    \"longTitle\": \"Mastering the subtle skills of relaxation and remote management.\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{endpoint}}/exercise/api/courses",
+											"host": [
+												"{{endpoint}}"
+											],
+											"path": [
+												"exercise",
+												"api",
+												"courses"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 25 Oct 2024 09:46:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"courseId\": 15,\n    \"shortTitle\": \"The Art of Couch Surfing\",\n    \"longTitle\": \"Mastering the subtle skills of relaxation and remote management.\",\n    \"numberOfDays\": 5,\n    \"pricePerDay\": 12\n}"
+								},
+								{
+									"name": "create-course",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\r\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{endpoint}}/exercise/api/courses",
+											"host": [
+												"{{endpoint}}"
+											],
+											"path": [
+												"exercise",
+												"api",
+												"courses"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 25 Oct 2024 09:47:32 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"courseId\": 16,\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\n    \"numberOfDays\": 5,\n    \"pricePerDay\": 12\n}"
+								}
+							]
 						},
 						{
 							"name": "update-course",
@@ -472,6 +581,35 @@
 										"exercise",
 										"api",
 										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-course",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseId\": 6,\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/courses/5",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"courses",
+										"5"
 									]
 								}
 							},
