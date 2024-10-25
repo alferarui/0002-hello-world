@@ -1,13 +1,19 @@
 package be.abis.twohelloworld.service;
 
 
+import be.abis.twohelloworld.model.Course;
 import be.abis.twohelloworld.repository.CourseMemoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CourseService {
+import java.util.List;
 
-    @Autowired
-    private CourseMemoryRepository courseRepository;
+@Service
+public interface CourseService {
+    List<Course> findAllCourses();
+    Course findCourseById(int id);
+    Course findCourseByShortTitle(String shortTitle);
+    void addCourse(Course c);
+    void updateCourse(Course c);
+    void deleteCourse(int id);
 }
