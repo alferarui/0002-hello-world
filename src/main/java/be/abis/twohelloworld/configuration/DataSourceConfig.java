@@ -16,10 +16,17 @@ public class DataSourceConfig {
     // Oracle DataSource
     @Bean(name = "oracleDataSource")
     public DataSource oracleDataSource() {
+        /** TODO make it retrieve
+         * spring.datasource.oracle.url
+         * spring.datasource.oracle.username
+         * spring.datasource.oracle.password
+         * spring.datasource.oracle.driver
+         * from application.properties
+         * */
         return DataSourceBuilder.create()
-                .url("jdbc:oracle:thin:@//localhost:1521/orcl")
-                .username("oracle_user")
-                .password("oracle_password")
+                .url("jdbc:oracle:thin:@//delphi.abis.be:1521/TSTA")
+                .username("tu00057")
+                .password("tu00057")
                 .driverClassName("oracle.jdbc.OracleDriver")
                 .build();
     }

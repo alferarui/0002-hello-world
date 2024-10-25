@@ -1,4 +1,4 @@
-package be.abis.twohelloworld.repository.sqlite;
+package be.abis.twohelloworld.repository.oracle;
 
 import be.abis.twohelloworld.model.Person;
 import be.abis.twohelloworld.repository.PersonRepository;
