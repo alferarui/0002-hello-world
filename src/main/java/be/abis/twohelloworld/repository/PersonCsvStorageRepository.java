@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Repository
+public
 class PersonCsvStorageRepository implements PersonRepository,SaverRepository {
     private final File fl = new File("Person.repository.csv");
     private final PersonMemoryRepository memoryRepository = new PersonMemoryRepository();

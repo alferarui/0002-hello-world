@@ -1,18 +1,19 @@
 package be.abis.twohelloworld.service;
 
-import be.abis.twohelloworld.model.Course;
+import be.abis.twohelloworld.model.Person;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @SpringBootTest
-class CourseServiceDiskTest {
+class PersonServiceDiskTest {
 
     @Autowired
-    CourseServiceDisk disk;
+    PersonServiceDisk disk;
     @BeforeEach
     void setUp() {
     }
@@ -26,28 +27,28 @@ class CourseServiceDiskTest {
         assertNotNull(disk);
     }
     @Test
-    void findAllCoursesTest() {
+    void findAllPersonsTest() {
     }
 
     @Test
-    void findCourseByIdTest() {
-        Course c = disk.findCourseById(7900);
+    void findPersonByIdTest() {
+        Person c = disk.findPersonById(5);
         assertNotNull(c);
     }
 
     @Test
-    void findCourseByShortTitleTest() {
+    void findPersonByShortTitleTest() {
     }
 
     @Test
-    void addCourseTest() {
+    void addPersonTest() {
     }
 
     @Test
-    void updateCourseTest() {
+    void updatePersonTest() {
     }
 
     @Test
-    void deleteCourseTest() {
+    void deletePersonTest() {
     }
 }
