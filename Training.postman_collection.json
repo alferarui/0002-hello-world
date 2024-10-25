@@ -619,7 +619,259 @@
 				},
 				{
 					"name": "persons",
-					"item": []
+					"item": [
+						{
+							"name": "get-persons",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/persons",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-persons-by_short_title",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/persons/query?title=Game+of+Scones:+A+Baking+Adventure",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"persons",
+										"query"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Game+of+Scones:+A+Baking+Adventure"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-person",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\r\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/persons",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create-person",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"shortTitle\": \"The Art of Couch Surfing\",\r\n    \"longTitle\": \"Mastering the subtle skills of relaxation and remote management.\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{endpoint}}/exercise/api/persons",
+											"host": [
+												"{{endpoint}}"
+											],
+											"path": [
+												"exercise",
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 25 Oct 2024 09:46:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"personId\": 15,\n    \"shortTitle\": \"The Art of Couch Surfing\",\n    \"longTitle\": \"Mastering the subtle skills of relaxation and remote management.\",\n    \"numberOfDays\": 5,\n    \"pricePerDay\": 12\n}"
+								},
+								{
+									"name": "create-person",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\r\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\r\n    \"numberOfDays\": 5,\r\n    \"pricePerDay\": 12\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{endpoint}}/exercise/api/persons",
+											"host": [
+												"{{endpoint}}"
+											],
+											"path": [
+												"exercise",
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 25 Oct 2024 09:47:32 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"personId\": 16,\n    \"shortTitle\": \"The Art of Procrastination: Advanced Techniques\",\n    \"longTitle\": \"Mastering the art of looking busy without doing anything. Perfect for coffee breaks, meetings, and avoiding laundry!\",\n    \"numberOfDays\": 5,\n    \"pricePerDay\": 12\n}"
+								}
+							]
+						},
+						{
+							"name": "update-person",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"personId\": 6,\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/persons",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-person",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"personId\": 6,\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/persons/5",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"persons",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "get-api-version",

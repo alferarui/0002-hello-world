@@ -47,6 +47,7 @@ public class CoursesApiController {
         try{course.setLongTitle(c.get("longTitle"));}catch(Exception x){ errors.put("longTitle",x.getMessage());}
         try{course.setNumberOfDays(Integer.parseInt(c.get("numberOfDays")));}catch(Exception x){ errors.put("numberOfDays",x.getMessage());}
         try{course.setPricePerDay(Integer.parseInt(c.get("pricePerDay")));}catch(Exception x){ errors.put("pricePerDay",x.getMessage());}
+
         if(errors.isEmpty()){
             courseService.addCourse(course);
             return ResponseEntity.ok(course);
@@ -66,6 +67,7 @@ public class CoursesApiController {
         try{course.setLongTitle(c.get("longTitle"));}catch(Exception x){ errors.put("longTitle",x.getMessage());}
         try{course.setNumberOfDays(Integer.parseInt(c.get("numberOfDays")));}catch(Exception x){ errors.put("numberOfDays",x.getMessage());}
         try{course.setPricePerDay(Integer.parseInt(c.get("pricePerDay")));}catch(Exception x){ errors.put("pricePerDay",x.getMessage());}
+
         if(errors.isEmpty()){
             courseService.addCourse(course);
             return ResponseEntity.ok(course);
