@@ -1,0 +1,539 @@
+{
+	"info": {
+		"_postman_id": "1fa41bb7-f775-4326-a905-6a7b001aa295",
+		"name": "Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0001-HelloWorld",
+			"item": [
+				{
+					"name": "persons",
+					"item": [
+						{
+							"name": "persons-by-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/persons/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "persons-by-id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/persons/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"persons",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Oct 2024 14:50:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Sandy\",\n    \"age\": 42,\n    \"isActive\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "persons-all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/persons",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "persons-all",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/persons",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Oct 2024 14:50:39 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Sandy\",\n        \"age\": 42,\n        \"isActive\": 0\n    },\n    {\n        \"id\": 2,\n        \"name\": \"John\",\n        \"age\": 31,\n        \"isActive\": 1\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Paul\",\n        \"age\": 32,\n        \"isActive\": 1\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Matthew\",\n        \"age\": 33,\n        \"isActive\": 1\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Peter\",\n        \"age\": 34,\n        \"isActive\": 1\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Betty\",\n        \"age\": 368,\n        \"isActive\": 0\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "activate",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/persons/1/activate",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										"1",
+										"activate"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "activate",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/persons/1/activate",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"persons",
+												"1",
+												"activate"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Oct 2024 14:50:11 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Sandy\",\n    \"age\": 42,\n    \"isActive\": 1\n}"
+								}
+							]
+						},
+						{
+							"name": "deactivate",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/persons/1/deactivate",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										"1",
+										"deactivate"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "deactivate",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/persons/1/deactivate",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"persons",
+												"1",
+												"deactivate"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Oct 2024 14:50:18 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Sandy\",\n    \"age\": 42,\n    \"isActive\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 100,\n    \"name\": \"Betty\",\n    \"age\": 368,\n    \"isActive\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/persons",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "save",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": 100,\n    \"name\": \"Betty\",\n    \"age\": 368,\n    \"isActive\":1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/persons",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 21 Oct 2024 14:50:33 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 6,\n    \"name\": \"Betty\",\n    \"age\": 368,\n    \"isActive\": 0\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "0002-HelloWorld",
+			"item": [
+				{
+					"name": "courses",
+					"item": [
+						{
+							"name": "get-courses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/courses",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-courses-by_short_title",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/courses/query?title=Game+of+Scones:+A+Baking+Adventure",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"courses",
+										"query"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Game+of+Scones:+A+Baking+Adventure"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-course",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/courses",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-course",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseId\": 6,\r\n    \"shortTitle\": \"Game of Scones: A Baking Adventure\",\r\n    \"longTitle\": \"An unintentional expert in the art of napping.\",\r\n    \"numberOfDays\": 11,\r\n    \"pricePerDay\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/exercise/api/courses",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"exercise",
+										"api",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "persons",
+					"item": []
+				},
+				{
+					"name": "get-api-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/exercise/api/version",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"exercise",
+								"api",
+								"version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "endpoint",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}
