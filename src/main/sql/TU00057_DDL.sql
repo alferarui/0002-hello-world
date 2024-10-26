@@ -6,7 +6,7 @@ create table ABISCOURSES
     CDUR    NUMBER       not null,
     CAPRICE NUMBER(9, 2) not null
 )
-    /
+/
 
 create table ABISPERSONS
 (
@@ -19,7 +19,19 @@ create table ABISPERSONS
     PTEL    CHAR(16),
     PSEX    CHAR
 )
-    /
+/
+ALTER TABLE ABISPERSONS ADD (
+        P_FULL_INFO VARCHAR2(255) GENERATED ALWAYS AS (
+            '{' ||
+            '"PersonId":' || TO_CHAR(PNO) || ',' ||
+            '"FirstName":"' || PLNAME || '",' ||
+            '"LastName":"' || PFNAME || '",' ||
+            '"Phone":"' || PTEL || '"' ||
+            '}'
+            ) VIRTUAL
+        )
+
+/
 
 create table ABISENROLMENTS
 (
@@ -31,7 +43,7 @@ create table ABISENROLMENTS
     ECANCEL   CHAR,
     EINV_CONO NUMBER       not null
 )
-    /
+/
 
 create table ABISCOMPANIES
 (
@@ -47,7 +59,7 @@ create table ABISCOMPANIES
     COBANKNO CHAR(14),
     COC_PNO  NUMBER
 )
-    /
+/
 
 create table ABISSESSIONS
 (
@@ -62,5 +74,5 @@ create table ABISSESSIONS
     SCANCEL   CHAR,
     S_CID     CHAR(4)      not null
 )
-    /
+/
 

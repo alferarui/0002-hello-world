@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 /**
  * generated source
  **/
-interface AddressRepository {
+public interface AddressRepository {
     // Add an entity to the repository
     void add(Address ent);
     // Remove an entity from the repository

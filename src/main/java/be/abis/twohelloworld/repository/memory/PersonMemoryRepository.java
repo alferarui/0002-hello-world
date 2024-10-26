@@ -1,7 +1,8 @@
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.memory;
 
 import be.abis.twohelloworld.model.Person;
+import be.abis.twohelloworld.repository.PersonRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.function.Predicate;
  *           - city
  */
 @Repository
-class PersonMemoryRepository implements PersonRepository{
+public class PersonMemoryRepository implements PersonRepository {
     private final ArrayList<Person> storage = new ArrayList<>();
     public List<Person> all(){
         return storage;

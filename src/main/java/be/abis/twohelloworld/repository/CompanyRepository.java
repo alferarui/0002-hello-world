@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 /**
  * generated source
  **/
-interface CompanyRepository {
+public interface CompanyRepository {
     // Add an entity to the repository
     void add(Company ent);
     // Remove an entity from the repository

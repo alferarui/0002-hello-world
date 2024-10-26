@@ -10,51 +10,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static be.abis.twohelloworld.repository.Jdbcutils.personRowMapper;
+
 @Repository
 public class PersonRepositoryOracle implements PersonRepository {
 
     private final JdbcTemplate oracleJdbcTemplate;
-
-    // RowMapper to convert ResultSet rows into person objects
-    public final RowMapper<Person> personSqliteRowMapper = (rs, rowNum) -> {
-        Person person = new Person();
-
-        person.setPersonId(rs.getInt("PNO"));
-        person.setFirstName(rs.getString("PLNAME"));
-        person.setLastName(rs.getString("PFNAME"));
-        person.setBirthday(rs.getDate("BIRTHDAY").toLocalDate());
-        person.setEmailAddress(rs.getString("EMAIL_ADDRESS"));
-        person.setHomeAddress(rs.getString("HOME_ADDRESS"));
-        person.setLanguage(rs.getString("LANGUAGE"));
-        person.setPhone(rs.getString("PTEL"));
-        person.setMobile(rs.getString("MOBILE"));
-        person.setStreet(rs.getString("STREET"));
-        person.setNumber(rs.getString("NUMBER"));
-        person.setZipCode(rs.getString("ZIP_CODE"));
-        person.setCity(rs.getString("CITY"));
-
-        return person;
-    };
-    // RowMapper to convert ResultSet rows into person objects
-    public final RowMapper<Person> personOracleRowMapper = (rs, rowNum) -> {
-        Person person = new Person();
-
-        person.setPersonId(rs.getInt("PERSON_ID"));
-        person.setFirstName(rs.getString("FIRST_NAME"));
-        person.setLastName(rs.getString("LAST_NAME"));
-        person.setBirthday(rs.getDate("BIRTHDAY").toLocalDate());
-        person.setEmailAddress(rs.getString("EMAIL_ADDRESS"));
-        person.setHomeAddress(rs.getString("HOME_ADDRESS"));
-        person.setLanguage(rs.getString("LANGUAGE"));
-        person.setPhone(rs.getString("PHONE"));
-        person.setMobile(rs.getString("MOBILE"));
-        person.setStreet(rs.getString("STREET"));
-        person.setNumber(rs.getString("NUMBER"));
-        person.setZipCode(rs.getString("ZIP_CODE"));
-        person.setCity(rs.getString("CITY"));
-
-        return person;
-    };
 
     public PersonRepositoryOracle(
             @Qualifier("sqliteJdbcTemplate") JdbcTemplate oracleJdbcTemplate
@@ -80,62 +41,48 @@ public class PersonRepositoryOracle implements PersonRepository {
     @Override
     public List<Person> find(Predicate<? super Person> predicate) {
 
-        String sql="SELECT" +
-                "    PERSON_ID," +
-                "    FIRST_NAME," +
-                "    LAST_NAME," +
-                "    BIRTHDAY," +
-                "    EMAIL_ADDRESS," +
-                "    HOME_ADDRESS," +
-                "    LANGUAGE," +
-                "    PHONE," +
-                "    MOBILE," +
-                "    STREET," +
-                "    NUMBER" +
-                "    ZIP_CODE" +
-                "FROM person";
-        PersonRepositoryOracle self=this;
-        return oracleJdbcTemplate.query(sql, personOracleRowMapper).stream().filter(predicate).toList();
+        String sql="""
+            SELECT
+              p.PNO,
+              p.PLNAME,
+              p.PFNAME,
+              p.PFUNC,
+              p.PA_CONO,
+              p.PADEPT,
+              p.PTEL,
+              p.PSEX
+            FROM ABISPERSONS p
+        """;
+        return oracleJdbcTemplate.query(sql, personRowMapper).stream().filter(predicate).toList();
     }
 
     @Override
     public List<Person> match(String regexpString) {
-        String sql="SELECT" +
-                "    PERSON_ID," +
-                "    FIRST_NAME," +
-                "    LAST_NAME," +
-                "    BIRTHDAY," +
-                "    EMAIL_ADDRESS," +
-                "    HOME_ADDRESS," +
-                "    LANGUAGE," +
-                "    PHONE," +
-                "    MOBILE," +
-                "    STREET," +
-                "    NUMBER" +
-                "    ZIP_CODE" +
-                "FROM person" +
-                "WHERE " +
-                "    REGEXP_LIKE(" +
-                "        FIRST_NAME||'$'||" +
-                "        LAST_NAME||'$'||" +
-                "        EMAIL_ADDRESS||'$'||" +
-                "        HOME_ADDRESS||'$'||" +
-                "        LANGUAGE||'$'||" +
-                "        PHONE||'$'||" +
-                "        MOBILE||'$'||" +
-                "        STREET,'"+regexpString+"')";
-        return oracleJdbcTemplate.query(sql, personOracleRowMapper);
+        String sql="""
+            SELECT
+              PNO,
+              PLNAME,
+              PFNAME,
+              PFUNC,
+              PA_CONO,
+              PADEPT,
+              PTEL,
+              PSEX
+            FROM ABISPERSONS
+            WHERE regexp_like(P_FULL_INFO,'?')
+        """;
+        return oracleJdbcTemplate.query(sql, personRowMapper,regexpString);
     }
 
     @Override
     public int count() {
-        String sql="SELECT count(*) as CNT FROM PERSON";
+        String sql="SELECT count(*) as CNT FROM ABISPERSONS";
         return oracleJdbcTemplate.query(sql, (rs, rowNum) -> rs.getInt("CNT")).get(0);
     }
 
     @Override
     public void clear() {
-        String sql="DELETE FROM PERSON WHERE 1=1";
+        String sql="DELETE FROM ABISPERSONS WHERE 1=1";
         oracleJdbcTemplate.update(sql);
     }
 
@@ -155,6 +102,6 @@ public class PersonRepositoryOracle implements PersonRepository {
             "    NUMBER" +
             "    ZIP_CODE" +
             "FROM person";
-        return oracleJdbcTemplate.query(sql, personOracleRowMapper);
+        return oracleJdbcTemplate.query(sql, personRowMapper);
     }
 }

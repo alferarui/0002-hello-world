@@ -1,8 +1,11 @@
 
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.csv;
 
 import be.abis.twohelloworld.model.Person;
+import be.abis.twohelloworld.repository.PersonRepository;
+import be.abis.twohelloworld.repository.SaverRepository;
+import be.abis.twohelloworld.repository.memory.PersonMemoryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -15,7 +18,7 @@ import java.util.function.Predicate;
 
 @Repository
 public
-class PersonCsvStorageRepository implements PersonRepository,SaverRepository {
+class PersonCsvStorageRepository implements PersonRepository, SaverRepository {
     private final File fl = new File("Person.repository.csv");
     private final PersonMemoryRepository memoryRepository = new PersonMemoryRepository();
     private String csvFilePath = "Person.repository.csv";

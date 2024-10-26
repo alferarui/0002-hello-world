@@ -1,7 +1,8 @@
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.memory;
 
 import be.abis.twohelloworld.model.Address;
+import be.abis.twohelloworld.repository.AddressRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.function.Predicate;
  *           - addressId
  *           - town
  */
-class AddressMemoryRepository implements AddressRepository{
+public class AddressMemoryRepository implements AddressRepository {
     private final ArrayList<Address> storage = new ArrayList<>();
     public List<Address> all(){
         return storage;

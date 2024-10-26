@@ -1,7 +1,8 @@
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.memory;
 
 import be.abis.twohelloworld.model.Company;
+import be.abis.twohelloworld.repository.CompanyRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.function.Predicate;
  *           - name
  *           - telephoneNumber
  */
-class CompanyMemoryRepository implements CompanyRepository{
+public class CompanyMemoryRepository implements CompanyRepository {
     private final ArrayList<Company> storage = new ArrayList<>();
     public List<Company> all(){
         return storage;

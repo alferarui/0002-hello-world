@@ -1,7 +1,7 @@
 package be.abis.twohelloworld.service;
 
 import be.abis.twohelloworld.model.Course;
-import be.abis.twohelloworld.repository.CourseCsvStorageRepository;
+import be.abis.twohelloworld.repository.csv.CourseCsvStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

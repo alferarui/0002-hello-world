@@ -1,8 +1,11 @@
 
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.csv;
 
-import be.abis.twohelloworld.model.Company;
+import be.abis.twohelloworld.model.Address;
+import be.abis.twohelloworld.repository.AddressRepository;
+import be.abis.twohelloworld.repository.SaverRepository;
+import be.abis.twohelloworld.repository.memory.AddressMemoryRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,45 +14,45 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-class CompanyCsvStorageRepository implements CompanyRepository, SaverRepository {
+class AddressCsvStorageRepository implements AddressRepository, SaverRepository {
     private final File fl = new File("CsvFileCourse.repository.csv");
-    private final CompanyMemoryRepository memoryRepository = new CompanyMemoryRepository();
+    private final AddressMemoryRepository memoryRepository = new AddressMemoryRepository();
     private String csvFilePath = "CsvFileCourse.repository.csv";
     boolean memoryIsFresh=false;
 
-    public CompanyCsvStorageRepository() {
+    public AddressCsvStorageRepository() {
         load();
     }
 
-    public CompanyCsvStorageRepository(String filePath) {
+    public AddressCsvStorageRepository(String filePath) {
         this.csvFilePath = filePath;
         load();
     }
 
     // Add an entity to the repository
-    public void add(Company ent) {
+    public void add(Address ent) {
         memoryRepository.add(ent);
     }
 
     // Remove an entity from the repository
-    public void remove(Company ent) {
+    public void remove(Address ent) {
         memoryRepository.remove(ent);
         save();
     }
 
     // Update an entity in the repository
-    public void update(Company ent) {
+    public void update(Address ent) {
         memoryRepository.update(ent);
         save();
     }
 
     // Find entities using a lambda (predicate)
-    public List<Company> find(Predicate<? super Company> predicate) {
+    public List<Address> find(Predicate<? super Address> predicate) {
         return memoryRepository.find(predicate);
     }
 
     // Match entities using a regular expression on all fields (full-text search)
-    public List<Company> match(String regexpString) {
+    public List<Address> match(String regexpString) {
         return memoryRepository.match(regexpString);
     }
 
@@ -62,11 +65,12 @@ class CompanyCsvStorageRepository implements CompanyRepository, SaverRepository 
                 for(String line:lines){
                     var cells = line.split(";");
                    memoryRepository.add(
-                           new Company(){{
-                               setVatNr(String.valueOf(cells[0]));
-                               setCompanyId(Long.parseLong(cells[1]));
-                               setName(String.valueOf(cells[2]));
-                               setTelephoneNumber(String.valueOf(cells[3]));
+                           new Address(){{
+                               setStreet(String.valueOf(cells[0]));
+                               setNr(String.valueOf(cells[1]));
+                               setZipCode(String.valueOf(cells[2]));
+                               setAddressId(Long.parseLong(cells[3]));
+                               setTown(String.valueOf(cells[4]));
                            }}
                    );
                 }
@@ -85,11 +89,12 @@ class CompanyCsvStorageRepository implements CompanyRepository, SaverRepository 
 
         final List<String> csvLines = memoryRepository.all()
                 .stream()
-                .map(company ->
-                        (company.getVatNr()) + ";"
-                            + Long.valueOf(company.getCompanyId()) + ";"
-                            + (company.getName()) + ";"
-                            + (company.getTelephoneNumber())
+                .map(address ->
+                        (address.getStreet()) + ";"
+                            + (address.getNr()) + ";"
+                            + (address.getZipCode()) + ";"
+                            + (address.getAddressId()) + ";"
+                            + (address.getTown())
                 )
                 .toList();
         try {

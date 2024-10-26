@@ -1,8 +1,11 @@
 
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.csv;
 
 import be.abis.twohelloworld.model.Course;
+import be.abis.twohelloworld.repository.CourseRepository;
+import be.abis.twohelloworld.repository.SaverRepository;
+import be.abis.twohelloworld.repository.memory.CourseMemoryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;

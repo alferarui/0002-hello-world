@@ -1,7 +1,8 @@
 
-package be.abis.twohelloworld.repository;
+package be.abis.twohelloworld.repository.memory;
 
 import be.abis.twohelloworld.model.Course;
+import be.abis.twohelloworld.repository.CourseRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.function.Predicate;
  *           - pricePerDay
  */
 @Repository
-public class CourseMemoryRepository implements CourseRepository{
+public class CourseMemoryRepository implements CourseRepository {
     private final ArrayList<Course> storage = new ArrayList<>();
 
     public CourseMemoryRepository(){}

@@ -1,7 +1,7 @@
 package be.abis.twohelloworld.service;
 
 import be.abis.twohelloworld.model.Person;
-import be.abis.twohelloworld.repository.PersonCsvStorageRepository;
+import be.abis.twohelloworld.repository.csv.PersonCsvStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
